@@ -3,7 +3,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
@@ -11,12 +11,12 @@ export default defineConfig({
     },
   },
   server: {
-    host: true,        // escucha en 0.0.0.0 (necesario para túneles)
+    host: true,          // Necesario para exponer el dev server fuera del localhost
     port: 5173,
     strictPort: true,
-    hmr: {
-      clientPort: 443, // HMR a través de ngrok HTTPS
-      // protocol: 'wss', // normalmente no hace falta; descomenta si tu navegador bloquea mixed content
-    },
+    hmr: mode === 'development' ? { clientPort: 443 } : undefined, // Solo en dev
   },
-})
+  build: {
+    outDir: 'dist',      // Carpeta de salida para producción
+  },
+}))
