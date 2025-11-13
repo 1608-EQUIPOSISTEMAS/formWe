@@ -6,7 +6,7 @@
       <div class="brand">
         <img src="/images.png" width="55" />
         <div>
-          <div class="brand-title">WE Educación Ejecutiva</div>
+          <div class="brand-title">W|E Educación Ejecutiva</div>
           <div class="brand-sub">Ficha de certificación</div>
         </div>
       </div>
@@ -43,11 +43,11 @@
             <section v-if="currentStep === 1" class="form-section">
               <!-- <h3>Bienvenida</h3> -->
               <p class="muted">
-                <strong>Bienvenido(a) a WE Educación Ejecutiva💙</strong>
-<br><br>
-En WE Educación Ejecutiva encontrarás los programas más demandados en el mercado actual que son dictados por Gerente Ejecutivos a nivel LATAM. Como parte del proceso de certificación WE En Vivo es necesario que completes esta ficha con tus datos correctamente escritos.
-<br><br>
-📍WE no se hace responsable en caso haya algún error en la información brindada.
+                <strong>Bienvenido(a) a W|E Educación Ejecutiva💙</strong>
+                <br><br>
+                En W|E Educación Ejecutiva encontrarás los programas más demandados en el mercado actual que son dictados por Gerente Ejecutivos a nivel LATAM. Como parte del proceso de certificación WE En Vivo es necesario que completes esta ficha con tus datos correctamente escritos.
+                <br><br>
+                📍W|E no se hace responsable en caso haya algún error en la información brindada.
               </p>
             </section>
 
