@@ -209,7 +209,26 @@ En WE Educación Ejecutiva encontrarás los programas más demandados en el merc
                 </div>
               </div>
 
+              <h3>Ubicación</h3>
+              <div class="row">
+                <div class="field col-4">
+                  <label>País <span class="req">*</span></label>
+                  <SearchSelect
+                    v-model="form.pais"
+                    :items="catalogo.paises"
+                    label-field="label"
+                    value-field="value"
+                    placeholder="Selecciona…"
+                  />
+                </div>
+                <div class="field col-4">
+                  <label>Departamento / Región <span class="req">*</span></label>
+                  <input v-restrict="{ only: 'letters', max: 80, transform:'upper' }"
+                   autocomplete="new-password" v-model.trim="form.departamento" placeholder="Lima, Santiago, Buenos Aires etc." />
+                </div>
+              </div>
               
+              <h3>Experiencia Laboral</h3>
               <!-- A. Situación primero -->
               <div class="row">
                 <div class="field col-4"> 
@@ -228,113 +247,58 @@ En WE Educación Ejecutiva encontrarás los programas más demandados en el merc
               <template v-if="isLaborando">
                 <!--un tipo subtitulo con estilo que resalte-->
                 <div class="form-section-subtitle">
-                  <h4>Experiencia Laboral</h4>
                   <p class="muted">Cuéntanos sobre tu experiencia actual.</p>
+                
+                  <div class="row">
+                    <div class="field col-6">
+                      <label>Área actual <span class="req">*</span></label>
+                      <SearchSelect
+                        v-model="form.areaActual"
+                        :items="catalogo.areasTrabajo"
+                        label-field="label"
+                        value-field="value"
+                        placeholder="Selecciona…"
+                      />
+                    </div>
+                    <div class="field col-6">
+                      <label>Área deseada <span class="req">*</span></label>
+                      <SearchSelect
+                        v-model="form.areaDeseada"
+                        :items="catalogo.areasTrabajo"
+                        label-field="label"
+                        value-field="value"
+                        placeholder="Selecciona…"
+                      />
+                    </div>
+                    <div class="field col-6"> 
+                      <label>Nombre de la Empresa <span class="req">*</span></label>
+                      <input autocomplete="new-password" v-model.trim="form.empresa" placeholder="Empresa S.A.C" v-restrict="{ only: 'letters', max: 80 }"/>
+                    </div>
+                    <div class="field col-6">
+                      <label>Puesto <span class="req">*</span></label>
+                      <input autocomplete="new-password" v-model.trim="form.puesto" placeholder="Cargo actual" v-restrict="{ only: 'letters', max: 80 }"/>
+                    </div>
+                    <div class="field col-4">
+                      <label>Años de experiencia <span class="req">*</span></label>
+                      <input autocomplete="new-password" v-model.number="form.aniosExp" type="number" min="0" placeholder="0" />
+                    </div>
+                    <div class="field col-4">
+                      <label>Sector económico <span class="req">*</span></label>
+                      <SearchSelect
+                        v-model="form.sector"
+                        :items="catalogo.sectores"
+                        label-field="label"
+                        value-field="value"
+                        placeholder="Educación, TI, Banca…"
+                      />
+                    </div>
                 </div>
-                
-                
-                <div class="row">
-                  <div class="field col-6">
-                    <label>Área actual <span class="req">*</span></label>
-                    <SearchSelect
-                      v-model="form.areaActual"
-                      :items="catalogo.areasTrabajo"
-                      label-field="label"
-                      value-field="value"
-                      placeholder="Selecciona…"
-                    />
-                  </div>
-                  <div class="field col-6">
-                    <label>Área deseada <span class="req">*</span></label>
-                    <SearchSelect
-                      v-model="form.areaDeseada"
-                      :items="catalogo.areasTrabajo"
-                      label-field="label"
-                      value-field="value"
-                      placeholder="Selecciona…"
-                    />
-                  </div>
-                  <div class="field col-6"> 
-                    <label>Nombre de la Empresa <span class="req">*</span></label>
-                    <input autocomplete="new-password" v-model.trim="form.empresa" placeholder="Empresa S.A.C" v-restrict="{ only: 'letters', max: 80 }"/>
-                  </div>
-                  <div class="field col-6">
-                    <label>Puesto <span class="req">*</span></label>
-                    <input autocomplete="new-password" v-model.trim="form.puesto" placeholder="Cargo actual" v-restrict="{ only: 'letters', max: 80 }"/>
-                  </div>
-                  <div class="field col-4">
-                    <label>Años de experiencia <span class="req">*</span></label>
-                    <input autocomplete="new-password" v-model.number="form.aniosExp" type="number" min="0" placeholder="0" />
-                  </div>
-                  <div class="field col-4">
-                    <label>Sector económico <span class="req">*</span></label>
-                    <SearchSelect
-                      v-model="form.sector"
-                      :items="catalogo.sectores"
-                      label-field="label"
-                      value-field="value"
-                      placeholder="Educación, TI, Banca…"
-                    />
-                  </div>
                 </div>
               </template>
             </section>
 
-            <!-- STEP 5: COMUNIDAD -->
+            <!-- STEP 5: ACCESIBILIDAD -->
             <section v-else-if="currentStep === 5" class="form-section">
-              <h3>Comunidad y preferencias</h3>
-              <div class="row">
-                <div class="field col-6">
-                  <label>¿Te gustaría un Programa de Emprendimiento? <span class="req">*</span></label>
-                  <small class="assist" :class="{'assist--persist': form.programaEmprendimiento === 'talvez'}">
-                    Nos ayuda a saber si te interesaría un programa de este tipo.
-                  </small>
-                  <select v-model="form.programaEmprendimiento">
-                    <option value="" disabled>Selecciona…</option>
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-                    <option value="talvez">Tal vez</option>
-                  </select>
-                </div>
-                <div class="field col-6">
-                  <label>¿Talleres de Speaking (Inglés)? <span class="req">*</span></label>
-                  <small class="assist">
-                    Nos ayuda a saber si te interesaría participar en talleres de Speaking.
-                  </small>
-                  
-                  <select v-model="form.tallerSpeaking">
-                    <option value="" disabled>Selecciona…</option>
-                    <option value="si">Sí</option>
-                    <option value="no">No</option>
-                    <option value="talvez">Tal vez</option>
-                  </select>
-                </div>
-              </div>
-            </section>
-
-            <!-- STEP 6: UBICACIÓN -->
-            <section v-else-if="currentStep === 6" class="form-section">
-              <h3>Ubicación</h3>
-              <div class="row">
-                <div class="field col-4">
-                  <label>País <span class="req">*</span></label>
-                  <SearchSelect
-                    v-model="form.pais"
-                    :items="catalogo.paises"
-                    label-field="label"
-                    value-field="value"
-                    placeholder="Selecciona…"
-                  />
-                </div>
-                <div class="field col-4">
-                  <label>Departamento / Región <span class="req">*</span></label>
-                  <input autocomplete="new-password" v-model.trim="form.departamento" placeholder="Lima, Santiago, Buenos Aires etc." />
-                </div>
-              </div>
-            </section>
-
-            <!-- STEP 7: ACCESIBILIDAD -->
-            <section v-else-if="currentStep === 7" class="form-section">
               <h3>Accesibilidad</h3>
               <div class="row">
                 <div class="field col-6">
@@ -355,8 +319,8 @@ En WE Educación Ejecutiva encontrarás los programas más demandados en el merc
               </div>
             </section>
 
-            <!-- STEP 8: IDENTIDAD -->
-            <section v-else-if="currentStep === 8" class="form-section">
+            <!-- STEP 6: IDENTIDAD -->
+            <section v-else-if="currentStep === 6" class="form-section">
               <h3>Verificación de identidad</h3>
               <p class="muted">Adjunta ambas caras de tu DNI/ID</p>
               <div class="row">
@@ -393,8 +357,8 @@ En WE Educación Ejecutiva encontrarás los programas más demandados en el merc
               </div>
             </section>
 
-            <!-- STEP 9: DESPEDIDA -->
-            <section v-else-if="currentStep === 9" class="form-section ">
+            <!-- STEP 7: DESPEDIDA -->
+            <section v-else-if="currentStep === 7" class="form-section ">
               <!-- <h3>Despedida</h3> -->
               <p class="muted fw-bold text-center">
                 Muchas gracias por darte el tiempo de llegar hasta aquí 😊 Gracias a ti, seguiremos mejorando nuestra propuesta y ofrecerte lo mejor 🚀
@@ -475,17 +439,15 @@ function onSuccessOK() {
  * -------------------- */
 const sections = [
   { section: 'Bienvenida',    porcent: 0,   step: 1 }, // texto
-  { section: 'Contacto',      porcent: 15,  step: 2 },
-  { section: 'Programa',      porcent: 30,  step: 3 },
-  { section: 'Perfil',        porcent: 45,  step: 4 },
-  { section: 'Comunidad',     porcent: 60,  step: 5 },
-  { section: 'Ubicación',     porcent: 75,  step: 6 },
-  { section: 'Accesibilidad', porcent: 90,  step: 7 },
-  { section: 'Identidad',     porcent: 95,  step: 8 },
-  { section: 'Despedida',     porcent: 100, step: 9 }  // texto
+  { section: 'Contacto',      porcent: 0,  step: 2 },
+  { section: 'Programa',      porcent: 20,  step: 3 },
+  { section: 'Perfil',        porcent: 40,  step: 4 },
+  { section: 'Accesibilidad', porcent: 60,  step: 5 },
+  { section: 'Identidad',     porcent: 80,  step: 6 },
+  { section: 'Despedida',     porcent: 100, step: 7 }  // texto
 ]
 const minStep = 1
-const maxStep = 9
+const maxStep = 7
 function next(){
   if(!canNext.value){
     showToast('Completa los campos requeridos del paso actual')
@@ -663,9 +625,7 @@ const catalogo = {
     { value: 'diplomado', label: 'Diplomado' },
     { value: 'curso', label: 'Curso' },
     { value: 'especializacion', label: 'Especialización' },
-    { value: 'pee', label: 'PEE' },
-    { value: 'membresia', label: 'Membresía' },
-    { value: 'congreso', label: 'Congreso / Evento' }
+    { value: 'pee', label: 'PEE' }
   ],
   problems: [
     { value: 'neuronal', label: 'Sí, necesito adaptaciones por razones de neurodiversidad (p. ej., TDAH, dislexia, autismo, etc.).' },
@@ -913,7 +873,7 @@ function sectionReady(n){
   if(n === 3) return !!form.categoriaPrograma && !!form.programa
   // 4 Perfil: opcional (si elige "Otra", no es obligatorio completar el texto)
   if(n === 4){
-    if(!!form.situacionActual && !!form.gradoAcademico && !!form.universidad && !!form.carrera){
+    if(!!form.situacionActual && !!form.gradoAcademico && !!form.universidad && !!form.carrera && !!form.pais && !!form.departamento){
       if(isLaborando.value){
         return ['areaActual','areaDeseada','empresa','puesto','aniosExp','sector'].every(k => !!form[k])
       }
@@ -921,16 +881,12 @@ function sectionReady(n){
     }
     return false
   } 
-  // 5 Comunidad
-  if(n === 5) return !!form.programaEmprendimiento && !!form.tallerSpeaking
-  // 6 Ubicación
-  if(n === 6) return !!form.pais && !!form.departamento
-  // 7 Accesibilidad
-  if(n === 7) return !!form.necesidadEspecial && (form.necesidadEspecial !== 'otro' || !!form.necesidadEspecialOtra)
-  // 8 Identidad (opcional)
-  if(n === 8) return !!files.front && !!files.back
-  // 9 Despedida (final)
-  if(n === 9) return true
+  // 5 Accesibilidad
+  if(n === 5) return !!form.necesidadEspecial && (form.necesidadEspecial !== 'otro' || !!form.necesidadEspecialOtra)
+  // 6 Identidad (opcional)
+  if(n === 6) return !!files.front && !!files.back
+  // 7 Despedida (final)
+  if(n === 7) return true
   return false
 }
 
