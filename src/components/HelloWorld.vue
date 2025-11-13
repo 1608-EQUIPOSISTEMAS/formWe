@@ -1039,9 +1039,10 @@ async function uploadDirect(side){
   const f = files[side]
   if (!f) return { key: '', url: '' }
 
-  const sign = await fetch('http://38.242.140.200:3000/upload/sign', {
-    method:'POST',
-    headers:{ 'Content-Type':'application/json' },
+  // Firmar upload
+  const sign = await fetch('/api/upload/sign', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ contentType: f.type, side })
   }).then(r => r.json())
 
@@ -1084,9 +1085,10 @@ async function submit(){
       }
     }
 
-    const res = await fetch('http://38.242.140.200:3000/inscripcion', {
-      method:'POST',
-      headers:{ 'Content-Type':'application/json' },
+    // Enviar ficha
+    const res = await fetch('/api/inscripcion', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     })
 
