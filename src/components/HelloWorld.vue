@@ -3,15 +3,28 @@
     <!-- Topbar -->
     <!-- Topbar -->
     <header class="topbar">
-      <div class="brand">
-        <img src="/images.png" width="55" />
+      <!-- IZQUIERDA: logo + textos -->
+      <div class="brand-left">
+        <picture>
+          <source srcset="/logo.webp" type="image/webp" />
+          <img src="/images.png" width="55" alt="WE Educación Ejecutiva" />
+        </picture>
+
         <div>
           <div class="brand-title">W|E Educación Ejecutiva</div>
           <div class="brand-sub">Ficha de certificación</div>
         </div>
       </div>
 
+      <!-- DERECHA: banner que se estira -->
+      <div class="brand-banner">
+        <picture>
+          <source srcset="/inicio.webp" type="image/webp" />
+          <img src="/primer.png" alt="Banner WE Educación Ejecutiva" class="brand-banner-img" />
+        </picture>
+      </div>
     </header>
+
 
 
     <!-- Progress + Stepper -->
@@ -223,7 +236,7 @@
                 </div>
                 <div class="field col-4">
                   <label>Departamento / Región <span class="req">*</span></label>
-                  <input v-restrict="{ only: 'letters', max: 80, transform:'upper' }"
+                  <input v-restrict="{ max: 80, transform:'upper' }"
                    autocomplete="new-password" v-model.trim="form.departamento" placeholder="Lima, Santiago, Buenos Aires etc." />
                 </div>
               </div>
@@ -324,31 +337,116 @@
               <h3>Verificación de identidad</h3>
               <p class="muted">Adjunta ambas caras de tu DNI/ID</p>
               <div class="row">
+                <!-- FRONTAL -->
                 <div class="field col-6">
                   <label>Frontal <span class="req">*</span></label>
-                  <input autocomplete="new-password"
-                    ref="dniFront"
-                    type="file"
-                    accept="image/*"
-                    @change="onFile($event, 'front')"
-                    :class="{ invalid: touchedFiles.front && !files.front }"
-                  />
+                  <div
+                    class="upload-card"
+                    :class="{ 'upload-card--filled': !!files.front }"
+                  >
+                    <div class="upload-card__icon">
+                      <picture v-if="!files.front">
+                        <source srcset="/upload.webp" type="image/webp">
+                        <img src="/subir.png" width="70%"  alt="WE Educación Ejecutiva" />
+                      </picture>
+                      
+                      <picture v-if="files.front">
+                        <source srcset="/okay.webp" type="image/webp">
+                        <img src="/okay.png" width="70%"  alt="WE Educación Ejecutiva" />
+                      </picture>
+                    </div>
+
+                    <div class="upload-card__body">
+                      <div class="upload-card__title">
+                        {{ files.front ? 'Archivo seleccionado' : 'Subir imagen frontal' }}
+                      </div>
+                      <div class="upload-card__subtitle">
+                        {{ files.front ? files.front.name : 'JPG, PNG o WEBP · Máx. 10 MB' }}
+                      </div>
+                    </div>
+
+
+                      <!-- Botón X -->
+                      <button
+                        v-if="files.front"
+                        type="button"
+                        class="upload-card__clear"
+                        @click="clearFile('front')"
+                        aria-label="Quitar archivo frontal"
+                      >
+                        ×
+                      </button>
+                    <!-- Input real (oculto visualmente pero clickeable) -->
+                    <input
+                      class="upload-card__input"
+                      autocomplete="new-password"
+                      ref="dniFront"
+                      type="file"
+                      accept="image/*"
+                      @change="onFile($event, 'front')"
+                      :class="{ invalid: touchedFiles.front && !files.front }"
+                    />
+                  </div>
+
                   <small v-if="touchedFiles.front && !files.front" class="err">Requerido</small>
+
                   <div v-if="previews.front" class="thumb">
                     <img :src="previews.front" alt="DNI frontal" />
                   </div>
                 </div>
 
+                <!-- REVERSO -->
                 <div class="field col-6">
                   <label>Reverso <span class="req">*</span></label>
-                  <input autocomplete="new-password"
-                    ref="dniBack"
-                    type="file"
-                    accept="image/*"
-                    @change="onFile($event, 'back')"
-                    :class="{ invalid: touchedFiles.back && !files.back }"
-                  />
+
+                  <div
+                    class="upload-card"
+                    :class="{ 'upload-card--filled': !!files.back }"
+                  >
+                    <div class="upload-card__icon">
+                            
+                      <picture v-if="!files.back">
+                        <source srcset="/upload.webp" type="image/webp">
+                        <img src="/subir.png" width="70%"  alt="WE Educación Ejecutiva" />
+                      </picture>
+                      
+                      <picture v-if="files.back">
+                        <source srcset="/okay.webp" type="image/webp">
+                        <img src="/okay.png" width="70%"  alt="WE Educación Ejecutiva" />
+                      </picture>
+                    </div>
+
+                    <div class="upload-card__body">
+                      <div class="upload-card__title">
+                        {{ files.back ? 'Archivo seleccionado' : 'Subir imagen reverso' }}
+                      </div>
+                      <div class="upload-card__subtitle">
+                        {{ files.back ? files.back.name : 'JPG, PNG o WEBP · Máx. 10 MB' }}
+                      </div>
+                    </div>
+
+                    <button
+                      v-if="files.back"
+                      type="button"
+                      class="upload-card__clear"
+                      @click="clearFile('back')"
+                      aria-label="Quitar archivo reverso"
+                    >
+                      ×
+                    </button>
+                    <input
+                      class="upload-card__input"
+                      autocomplete="new-password"
+                      ref="dniBack"
+                      type="file"
+                      accept="image/*"
+                      @change="onFile($event, 'back')"
+                      :class="{ invalid: touchedFiles.back && !files.back }"
+                    />
+                  </div>
+
                   <small v-if="touchedFiles.back && !files.back" class="err">Requerido</small>
+
                   <div v-if="previews.back" class="thumb">
                     <img :src="previews.back" alt="DNI reverso" />
                   </div>
@@ -364,23 +462,34 @@
                 Muchas gracias por darte el tiempo de llegar hasta aquí 😊 Gracias a ti, seguiremos mejorando nuestra propuesta y ofrecerte lo mejor 🚀
                 <br>
                 <hr>
-                <img src="/footer.png" width="70%" alt="">
-
+                <picture>
+                  <source srcset="/final.webp" type="image/webp">
+                  <img src="/footer.png" width="70%"  alt="WE Educación Ejecutiva" />
+                </picture>
               </p>
             </section>
 
             <!-- Step nav -->
-            <div class="step-nav">
-              <button v-if="currentStep != '1'" class="btn ghost" @click="prev" :disabled="currentStep === minStep || currentStep=='2'">Atrás</button>
-              <!-- Mostrar “Siguiente” solo si NO es el último paso -->
+            <div class="step-nav" :class="{ 'step-nav--center': currentStep === 1 }">
+              <button
+                v-if="currentStep != '1'"
+                class="btn ghost"
+                @click="prev"
+                :disabled="currentStep === minStep || currentStep=='2'"
+              >
+                Atrás
+              </button>
+
+              <!-- Mostrar “Siguiente / Empezar” solo si NO es el último paso -->
               <button
                 v-if="currentStep < maxStep"
                 class="btn"
                 @click="next"
                 :disabled="!canNext"
               >
-                {{(currentStep == '1')?'Empezar':'Siguiente'}}
+                {{ (currentStep == '1') ? 'Empezar' : 'Siguiente' }}
               </button>
+
               <button
                 v-if="currentStep === maxStep"
                 class="btn primary"
@@ -389,8 +498,8 @@
               >
                 {{ isSubmitting ? 'Enviando…' : 'Enviar' }}
               </button>
-
             </div>
+
 
           </div>
         </transition>
@@ -635,173 +744,128 @@ const catalogo = {
     { value: 'otro', label: 'Otro' }
   ],
   programs: [
-    // SAP Courses
-    { value: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', label: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', category: 'curso' },
-    { value: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', label: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', category: 'curso' },
-    { value: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', label: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', category: 'curso' },
-    { value: 'SAP S/4 HANA PP: PRODUCCIÓN', label: 'SAP S/4 HANA PP: PRODUCCIÓN', category: 'curso' },
-    { value: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', label: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', category: 'curso' },
-    { value: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', label: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', category: 'curso' },
-    { value: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', label: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', category: 'curso' },
-    { value: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', label: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', category: 'curso' },
-    { value: 'SAP HANA QM', label: 'SAP HANA QM', category: 'curso' },
-    { value: 'SAP HANA PS', label: 'SAP HANA PS', category: 'curso' },
-    { value: 'SAP BUSINESS ONE', label: 'SAP BUSINESS ONE', category: 'curso' },
-    
-    // SAP Specializations
-    { value: 'ESPECIALIZACIÓN EN SAP S/4 HANA: LOGÍSTICA INTEGRAL', label: 'ESPECIALIZACIÓN EN SAP S/4 HANA: LOGÍSTICA INTEGRAL', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN SAP S/4 HANA: COMPRAS Y ALMACENES', label: 'ESPECIALIZACIÓN EN SAP S/4 HANA: COMPRAS Y ALMACENES', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', label: 'ESPECIALIZACIÓN EN SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN SAP S/4 HANA: GESTIÓN FINANCIERA', label: 'ESPECIALIZACIÓN EN SAP S/4 HANA: GESTIÓN FINANCIERA', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN SAP S/4 HANA', label: 'ESPECIALIZACIÓN EN SAP S/4 HANA', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN SAP S/4 HANA: MINERÍA', label: 'ESPECIALIZACIÓN EN SAP S/4 HANA: MINERÍA', category: 'especializacion' },
-    
-    // Excel Courses
-    { value: 'MICROSOFT EXCEL BÁSICO', label: 'MICROSOFT EXCEL BÁSICO', category: 'curso' },
-    { value: 'MICROSOFT EXCEL INTERMEDIO', label: 'MICROSOFT EXCEL INTERMEDIO', category: 'curso' },
-    { value: 'MICROSOFT EXCEL AVANZADO', label: 'MICROSOFT EXCEL AVANZADO', category: 'curso' },
-    { value: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', label: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', category: 'curso' },
-    
-    // Excel Specializations
-    { value: 'ESPECIALIZACIÓN EN MICROSOFT EXCEL', label: 'ESPECIALIZACIÓN EN MICROSOFT EXCEL', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN VBA MACROS EN MICROSOFT EXCEL', label: 'ESPECIALIZACIÓN EN VBA MACROS EN MICROSOFT EXCEL', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN EXCEL EXPERT', label: 'ESPECIALIZACIÓN EN EXCEL EXPERT', category: 'especializacion' },
-    
-    // Data & Analytics Courses
-    { value: 'SQL SERVER FOR ANALYTICS', label: 'SQL SERVER FOR ANALYTICS', category: 'curso' },
-    { value: 'SQL SERVER AVANZADO', label: 'SQL SERVER AVANZADO', category: 'curso' },
-    { value: 'POWER BI', label: 'POWER BI', category: 'curso' },
-    { value: 'POWER BI AVANZADO - DAX', label: 'POWER BI AVANZADO - DAX', category: 'curso' },
-    { value: 'PROGRAMACIÓN CON PYTHON', label: 'PROGRAMACIÓN CON PYTHON', category: 'curso' },
-    { value: 'DATA ANALYTICS', label: 'DATA ANALYTICS', category: 'curso' },
-    { value: 'DATA SCIENCE: MACHINE LEARNING', label: 'DATA SCIENCE: MACHINE LEARNING', category: 'curso' },
-    { value: 'BUSINESS ANALYTICS', label: 'BUSINESS ANALYTICS', category: 'curso' },
-    { value: 'IA & DEEP LEARNING', label: 'IA & DEEP LEARNING', category: 'curso' },
-    { value: 'PYTHON: ANÁLISIS DE DATOS', label: 'PYTHON: ANÁLISIS DE DATOS', category: 'curso' },
-    { value: 'PYTHON AVANZADO: MACHINE LEARNING', label: 'PYTHON AVANZADO: MACHINE LEARNING', category: 'curso' },
-    { value: 'HERRAMIENTAS IA & PROMPTS', label: 'HERRAMIENTAS IA & PROMPTS', category: 'curso' },
-    { value: 'AZURE', label: 'AZURE', category: 'curso' },
-    { value: 'BIG DATA', label: 'BIG DATA', category: 'curso' },
-    { value: 'DATABRICKS', label: 'DATABRICKS', category: 'curso' },
-    { value: 'INGENIERO DE ANÁLISIS DE MICROSOFT FABRIC', label: 'INGENIERO DE ANÁLISIS DE MICROSOFT FABRIC', category: 'curso' },
-    { value: 'DATA STORYTELLING', label: 'DATA STORYTELLING', category: 'curso' },
-    
-    // Data Diplomados
-    { value: 'DIPLOMADO EN INTELIGENCIA Y ANÁLISIS DE DATOS', label: 'DIPLOMADO EN INTELIGENCIA Y ANÁLISIS DE DATOS', category: 'diplomado' },
-    
-    // Data Specializations
-    { value: 'ESPECIALIZACIÓN EN POWER BI', label: 'ESPECIALIZACIÓN EN POWER BI', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN SQL SERVER', label: 'ESPECIALIZACIÓN EN SQL SERVER', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN DATA SCIENCE & IA', label: 'ESPECIALIZACIÓN EN DATA SCIENCE & IA', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN PYTHON: DATA SCIENCE', label: 'ESPECIALIZACIÓN EN PYTHON: DATA SCIENCE', category: 'especializacion' },
-    
-    // Data PEE
-    { value: 'ANALISTA DE DATOS', label: 'ANALISTA DE DATOS', category: 'pee' },
-    
-    // Supply Chain Courses
-    { value: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', label: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', category: 'curso' },
-    { value: 'GERENCIA DE COMPRAS Y GESTIÓN DE PROVEEDORES', label: 'GERENCIA DE COMPRAS Y GESTIÓN DE PROVEEDORES', category: 'curso' },
-    { value: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', label: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', category: 'curso' },
-    { value: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', label: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', category: 'curso' },
-    { value: 'LEAN LOGISTICS', label: 'LEAN LOGISTICS', category: 'curso' },
-    { value: 'KPIS LOGÍSTICOS CON POWER BI', label: 'KPIS LOGÍSTICOS CON POWER BI', category: 'curso' },
-    { value: 'SUPPLY CHAIN ANALYTICS CON PYTHON', label: 'SUPPLY CHAIN ANALYTICS CON PYTHON', category: 'curso' },
-    { value: 'GESTIÓN DE COMPRAS Y PROVEEDORES', label: 'GESTIÓN DE COMPRAS Y PROVEEDORES', category: 'curso' },
-    { value: 'SUPPLY CHAIN ANALYTICS', label: 'SUPPLY CHAIN ANALYTICS', category: 'curso' },
-    
-    // Supply Chain Diplomados
-    { value: 'DIPLOMADO SUPPLY CHAIN MANAGEMENT', label: 'DIPLOMADO SUPPLY CHAIN MANAGEMENT', category: 'diplomado' },
-    { value: 'DIPLOMADO DE SUPPLY CHAIN MANAGEMENT', label: 'DIPLOMADO DE SUPPLY CHAIN MANAGEMENT', category: 'diplomado' },
-    
-    // Supply Chain Specializations & PEE
-    { value: 'ESPECIALISTA EN COMPRAS CON SAP', label: 'ESPECIALISTA EN COMPRAS CON SAP', category: 'especializacion' },
-    { value: 'ANALISTA DE COMPRAS CON SAP', label: 'ANALISTA DE COMPRAS CON SAP', category: 'pee' },
-    { value: 'DEMAND PLANNER', label: 'DEMAND PLANNER', category: 'pee' },
-    { value: 'PLANEAMIENTO DE LA DEMANDA', label: 'PLANEAMIENTO DE LA DEMANDA', category: 'pee' },
-    
-    // Process Management Courses
-    { value: 'GESTIÓN DE PROCESOS', label: 'GESTIÓN DE PROCESOS', category: 'curso' },
-    { value: 'BIZAGI: MODELAMIENTO DE PROCESOS', label: 'BIZAGI: MODELAMIENTO DE PROCESOS', category: 'curso' },
-    { value: 'LEAN SIX SIGMA', label: 'LEAN SIX SIGMA', category: 'curso' },
-    { value: 'GESTIÓN DE INDICADORES KPIS Y OKRS', label: 'GESTIÓN DE INDICADORES KPIS Y OKRS', category: 'curso' },
-    { value: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', label: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', category: 'curso' },
-    { value: 'SISTEMAS INTEGRADOS DE GESTIÓN', label: 'SISTEMAS INTEGRADOS DE GESTIÓN', category: 'curso' },
-    { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'curso' },
-    { value: 'POWER APPS Y POWER AUTOMATE AVANZADO', label: 'POWER APPS Y POWER AUTOMATE AVANZADO', category: 'curso' },
-    { value: 'ISO 45001: GESTIÓN DE SST', label: 'ISO 45001: GESTIÓN DE SST', category: 'curso' },
-    { value: 'ISO 9001: GESTIÓN DE LA CALIDAD', label: 'ISO 9001: GESTIÓN DE LA CALIDAD', category: 'curso' },
-    { value: 'ISO 14001: GESTIÓN AMBIENTAL', label: 'ISO 14001: GESTIÓN AMBIENTAL', category: 'curso' },
-    { value: 'AUDITORÍA INTERNA', label: 'AUDITORÍA INTERNA', category: 'curso' },
-    { value: 'MODELAMIENTO DE PROCESOS CON BIZAGI', label: 'MODELAMIENTO DE PROCESOS CON BIZAGI', category: 'curso' },
-    { value: 'LEAN SIX SIGMA YELLOW BELT', label: 'LEAN SIX SIGMA YELLOW BELT', category: 'curso' },
-    { value: 'LEAN MANUFACTURING', label: 'LEAN MANUFACTURING', category: 'curso' },
-    { value: 'LEAN SIX SIGMA GREEN BELT', label: 'LEAN SIX SIGMA GREEN BELT', category: 'curso' },
-    { value: 'MANTENIMIENTO PRODUCTIVO TOTAL', label: 'MANTENIMIENTO PRODUCTIVO TOTAL', category: 'curso' },
-    { value: 'APPS SCRIPT', label: 'APPS SCRIPT', category: 'curso' },
-    { value: 'SSOMA', label: 'SSOMA', category: 'curso' },
-    { value: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', label: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', category: 'curso' },
-    
-    // Process Management Diplomados
-    { value: 'DIPLOMADO EN GESTIÓN DE PROCESOS Y MEJORA CONTINUA', label: 'DIPLOMADO EN GESTIÓN DE PROCESOS Y MEJORA CONTINUA', category: 'diplomado' },
-    { value: 'DIPLOMADO EN GERENCIA DE SISTEMAS INTEGRADOS DE GESTIÓN', label: 'DIPLOMADO EN GERENCIA DE SISTEMAS INTEGRADOS DE GESTIÓN', category: 'diplomado' },
-    
-    // Process Management Specializations & PEE
-    { value: 'ESPECIALIZACIÓN EN TRINORMA', label: 'ESPECIALIZACIÓN EN TRINORMA', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN POWER APPS Y POWER AUTOMATE', label: 'ESPECIALIZACIÓN EN POWER APPS Y POWER AUTOMATE', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN LEAN SIX SIGMA: GREEN BELT EXPERT', label: 'ESPECIALIZACIÓN EN LEAN SIX SIGMA: GREEN BELT EXPERT', category: 'especializacion' },
-    { value: 'ESPECIALIZACIÓN EN TPM', label: 'ESPECIALIZACIÓN EN TPM', category: 'especializacion' },
-    { value: 'ANALISTA DE PROCESOS', label: 'ANALISTA DE PROCESOS', category: 'pee' },
-    
-    // Project Management Courses
-    { value: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', label: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', category: 'curso' },
-    { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'curso' },
-    { value: 'GESTIÓN AVANZADA DE PROYECTOS', label: 'GESTIÓN AVANZADA DE PROYECTOS', category: 'curso' },
-    { value: 'GESTIÓN FINANCIERA DE PROYECTOS', label: 'GESTIÓN FINANCIERA DE PROYECTOS', category: 'curso' },
-    { value: 'GESTIÓN ÁGIL DE PROYECTOS', label: 'GESTIÓN ÁGIL DE PROYECTOS', category: 'curso' },
-    { value: 'GESTIÓN DE PROYECTOS I', label: 'GESTIÓN DE PROYECTOS I', category: 'curso' },
-    { value: 'GESTIÓN DE PROYECTOS II', label: 'GESTIÓN DE PROYECTOS II', category: 'curso' },
-    { value: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', label: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', category: 'curso' },
-    
-    // Project Management Diplomados
-    { value: 'DIPLOMADO EN GESTIÓN DE PROYECTOS', label: 'DIPLOMADO EN GESTIÓN DE PROYECTOS', category: 'diplomado' },
-    
-    // Project Management PEE & Specializations
-    { value: 'ANALISTA DE PROYECTOS', label: 'ANALISTA DE PROYECTOS', category: 'pee' },
-    { value: 'ESPECIALIZACIÓN EN GESTIÓN DE PROYECTOS', label: 'ESPECIALIZACIÓN EN GESTIÓN DE PROYECTOS', category: 'especializacion' },
-    
-    // Finance Courses
-    { value: 'COSTOS Y PRESUPUESTOS', label: 'COSTOS Y PRESUPUESTOS', category: 'curso' },
-    { value: 'CONTABILIDAD FINANCIERA CON ERP', label: 'CONTABILIDAD FINANCIERA CON ERP', category: 'curso' },
-    { value: 'PLANEAMIENTO FINANCIERO', label: 'PLANEAMIENTO FINANCIERO', category: 'curso' },
-    { value: 'PRICING Y RENTABILIDAD', label: 'PRICING Y RENTABILIDAD', category: 'curso' },
-    
-    // Finance Specializations & Diplomados
-    { value: 'ESPECIALIZACIÓN EN FINANZAS APLICADAS', label: 'ESPECIALIZACIÓN EN FINANZAS APLICADAS', category: 'especializacion' },
-    { value: 'DIPLOMADO EN GESTIÓN FINANCIERA', label: 'DIPLOMADO EN GESTIÓN FINANCIERA', category: 'diplomado' },
-    
-    // Other Courses
-    { value: 'GESTIÓN DE COMERCIO INTERNACIONAL', label: 'GESTIÓN DE COMERCIO INTERNACIONAL', category: 'curso' },
-    { value: 'PROGRAMACIÓN WEB', label: 'PROGRAMACIÓN WEB', category: 'curso' },
-    { value: 'PROGRAMACIÓN JAVASCRIPT WEB', label: 'PROGRAMACIÓN JAVASCRIPT WEB', category: 'curso' },
-    { value: 'REACT JS & REACT NATIVE', label: 'REACT JS & REACT NATIVE', category: 'curso' },
-    { value: 'CIBERSEGURIDAD', label: 'CIBERSEGURIDAD', category: 'curso' },
-    { value: 'ESPECIALIZACIÓN EN DESARROLLO FRONT END', label: 'ESPECIALIZACIÓN EN DESARROLLO FRONT END', category: 'especializacion' },
-    { value: 'INTELIGENCIA ARTIFICIAL APLICADA AL MARKETING', label: 'INTELIGENCIA ARTIFICIAL APLICADA AL MARKETING', category: 'curso' },
-    { value: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', label: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', category: 'curso' },
-    { value: 'GESTIÓN DE CONTRATACIONES CON EL ESTADO', label: 'GESTIÓN DE CONTRATACIONES CON EL ESTADO', category: 'curso' },
-    { value: 'AUTOCAD', label: 'AUTOCAD', category: 'curso' },
-    { value: 'BIM MANAGEMEMT', label: 'BIM MANAGEMEMT', category: 'curso' },
-    { value: 'UX/UI CON FIGMA', label: 'UX/UI CON FIGMA', category: 'curso' },
-    { value: 'GESTIÓN ESTRATÉGICA Y NEGOCIACIÓN EFECTIVA', label: 'GESTIÓN ESTRATÉGICA Y NEGOCIACIÓN EFECTIVA', category: 'curso' },
-    { value: 'EMPLEABILIDAD 4.0: PARA JÓVENES PROFESIONALES', label: 'EMPLEABILIDAD 4.0: PARA JÓVENES PROFESIONALES', category: 'curso' },
-    { value: 'GESTIÓN DE EMPRESAS', label: 'GESTIÓN DE EMPRESAS', category: 'curso' },
-    { value: 'IA GENERATIVA APLICADA A PROCESOS EMPRESARIALES', label: 'IA GENERATIVA APLICADA A PROCESOS EMPRESARIALES', category: 'curso' },
-    { value: 'PLANIFICACIÓN MINERA', label: 'PLANIFICACIÓN MINERA', category: 'curso' },
-    { value: 'RESPONSABILIDAD SOCIAL MINERA', label: 'RESPONSABILIDAD SOCIAL MINERA', category: 'curso' },
-    { value: 'DIRECCIÓN ESTRATÉGICA DE AGRONEGOCIOS', label: 'DIRECCIÓN ESTRATÉGICA DE AGRONEGOCIOS', category: 'curso' },
-    { value: 'GESTIÓN DE EMPRESAS AGROINDUSTRIALES', label: 'GESTIÓN DE EMPRESAS AGROINDUSTRIALES', category: 'curso' },
-    { value: 'DIRECCIÓN COMERCIAL PARA AGRONEGOCIOS SOSTENIBLES', label: 'DIRECCIÓN COMERCIAL PARA AGRONEGOCIOS SOSTENIBLES', category: 'curso' }
-  ]
+  // SAP Courses
+  { value: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', label: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', category: 'curso' },
+  { value: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', label: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', category: 'curso' },
+  { value: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', label: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', category: 'curso' },
+  { value: 'SAP S/4 HANA PP: PRODUCCIÓN', label: 'SAP S/4 HANA PP: PRODUCCIÓN', category: 'curso' },
+  { value: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', label: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', category: 'curso' },
+  { value: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', label: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', category: 'curso' },
+  { value: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', label: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', category: 'curso' },
+  { value: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', label: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', category: 'curso' },
+  
+  // SAP Specializations
+  { value: 'SAP S/4 HANA: LOGÍSTICA INTEGRAL', label: 'SAP S/4 HANA: LOGÍSTICA INTEGRAL', category: 'especializacion' },
+  { value: 'SAP S/4 HANA: COMPRAS Y ALMACENES', label: 'SAP S/4 HANA: COMPRAS Y ALMACENES', category: 'especializacion' },
+  { value: 'SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', label: 'SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', category: 'especializacion' },
+  { value: 'SAP S/4 HANA: GESTIÓN FINANCIERA', label: 'SAP S/4 HANA: GESTIÓN FINANCIERA', category: 'especializacion' },
+  { value: 'SAP S/4 HANA', label: 'SAP S/4 HANA', category: 'especializacion' },
+  { value: 'SAP S/4 HANA: MINERÍA', label: 'SAP S/4 HANA: MINERÍA', category: 'especializacion' },
+  
+  // Excel Courses
+  { value: 'MICROSOFT EXCEL BÁSICO', label: 'MICROSOFT EXCEL BÁSICO', category: 'curso' },
+  { value: 'MICROSOFT EXCEL INTERMEDIO', label: 'MICROSOFT EXCEL INTERMEDIO', category: 'curso' },
+  { value: 'MICROSOFT EXCEL AVANZADO', label: 'MICROSOFT EXCEL AVANZADO', category: 'curso' },
+  { value: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', label: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', category: 'curso' },
+  
+  // Excel Specializations
+  { value: 'MICROSOFT EXCEL', label: 'MICROSOFT EXCEL', category: 'especializacion' },
+  { value: 'VBA MACROS EN MICROSOFT EXCEL', label: 'VBA MACROS EN MICROSOFT EXCEL', category: 'especializacion' },
+  { value: 'EXCEL EXPERT', label: 'EXCEL EXPERT', category: 'especializacion' },
+  
+  // Data & Analytics Courses
+  { value: 'SQL SERVER FOR ANALYTICS', label: 'SQL SERVER FOR ANALYTICS', category: 'curso' },
+  { value: 'SQL SERVER AVANZADO', label: 'SQL SERVER AVANZADO', category: 'curso' },
+  { value: 'POWER BI', label: 'POWER BI', category: 'curso' },
+  { value: 'POWER BI AVANZADO - DAX', label: 'POWER BI AVANZADO - DAX', category: 'curso' },
+  { value: 'DATA ANALYTICS', label: 'DATA ANALYTICS', category: 'curso' },
+  { value: 'BUSINESS ANALYTICS', label: 'BUSINESS ANALYTICS', category: 'curso' },
+  { value: 'PYTHON: ANÁLISIS DE DATOS', label: 'PYTHON: ANÁLISIS DE DATOS', category: 'curso' },
+  { value: 'PYTHON AVANZADO: MACHINE LEARNING', label: 'PYTHON AVANZADO: MACHINE LEARNING', category: 'curso' },
+  { value: 'IA & DEEP LEARNING', label: 'IA & DEEP LEARNING', category: 'curso' },
+  { value: 'AZURE', label: 'AZURE', category: 'curso' },
+  { value: 'DATABRICKS', label: 'DATABRICKS', category: 'curso' },
+  
+  // Data Diplomados
+  { value: 'INTELIGENCIA Y ANÁLISIS DE DATOS', label: 'INTELIGENCIA Y ANÁLISIS DE DATOS', category: 'diplomado' },
+  
+  // Data Specializations
+  { value: 'POWER BI', label: 'POWER BI', category: 'especializacion' },
+  { value: 'SQL SERVER', label: 'SQL SERVER', category: 'especializacion' },
+  { value: 'PYTHON: DATA SCIENCE', label: 'PYTHON: DATA SCIENCE', category: 'especializacion' },
+  
+  // Data PEE
+  { value: 'ANALISTA DE DATOS', label: 'ANALISTA DE DATOS', category: 'pee' },
+  
+  // Supply Chain Courses
+  { value: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', label: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', category: 'curso' },
+  { value: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', label: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', category: 'curso' },
+  { value: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', label: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', category: 'curso' },
+  { value: 'LEAN LOGISTICS', label: 'LEAN LOGISTICS', category: 'curso' },
+  { value: 'KPIS LOGÍSTICOS CON POWER BI', label: 'KPIS LOGÍSTICOS CON POWER BI', category: 'curso' },
+  { value: 'GESTIÓN DE COMPRAS Y PROVEEDORES', label: 'GESTIÓN DE COMPRAS Y PROVEEDORES', category: 'curso' },
+  { value: 'SUPPLY CHAIN ANALYTICS', label: 'SUPPLY CHAIN ANALYTICS', category: 'curso' },
+  
+  // Supply Chain Diplomados
+  { value: 'SUPPLY CHAIN MANAGEMENT', label: 'SUPPLY CHAIN MANAGEMENT', category: 'diplomado' },
+  
+  // Supply Chain Specializations & PEE
+  { value: 'ESPECIALISTA EN COMPRAS CON SAP', label: 'ESPECIALISTA EN COMPRAS CON SAP', category: 'especializacion' },
+  { value: 'ANALISTA DE COMPRAS CON SAP', label: 'ANALISTA DE COMPRAS CON SAP', category: 'pee' },
+  { value: 'PLANEAMIENTO DE LA DEMANDA', label: 'PLANEAMIENTO DE LA DEMANDA', category: 'pee' },
+  
+  // Process Management Courses
+  { value: 'GESTIÓN DE PROCESOS', label: 'GESTIÓN DE PROCESOS', category: 'curso' },
+  { value: 'BIZAGI: MODELAMIENTO DE PROCESOS', label: 'BIZAGI: MODELAMIENTO DE PROCESOS', category: 'curso' },
+  { value: 'LEAN SIX SIGMA', label: 'LEAN SIX SIGMA', category: 'curso' },
+  { value: 'GESTIÓN DE INDICADORES KPIS Y OKRS', label: 'GESTIÓN DE INDICADORES KPIS Y OKRS', category: 'curso' },
+  { value: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', label: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', category: 'curso' },
+  { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'curso' },
+  { value: 'POWER APPS Y POWER AUTOMATE AVANZADO', label: 'POWER APPS Y POWER AUTOMATE AVANZADO', category: 'curso' },
+  { value: 'MODELAMIENTO DE PROCESOS CON BIZAGI', label: 'MODELAMIENTO DE PROCESOS CON BIZAGI', category: 'curso' },
+  { value: 'LEAN SIX SIGMA YELLOW BELT', label: 'LEAN SIX SIGMA YELLOW BELT', category: 'curso' },
+  { value: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', label: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', category: 'curso' },
+  
+  // Process Management Diplomados
+  { value: 'GESTIÓN DE PROCESOS Y MEJORA CONTINUA', label: 'GESTIÓN DE PROCESOS Y MEJORA CONTINUA', category: 'diplomado' },
+  
+  // Process Management Specializations & PEE
+  { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'especializacion' },
+  { value: 'ANALISTA DE PROCESOS', label: 'ANALISTA DE PROCESOS', category: 'pee' },
+  
+  // Project Management Courses
+  { value: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', label: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', category: 'curso' },
+  { value: 'GESTIÓN FINANCIERA DE PROYECTOS', label: 'GESTIÓN FINANCIERA DE PROYECTOS', category: 'curso' },
+  { value: 'GESTIÓN ÁGIL DE PROYECTOS', label: 'GESTIÓN ÁGIL DE PROYECTOS', category: 'curso' },
+  { value: 'GESTIÓN DE PROYECTOS I', label: 'GESTIÓN DE PROYECTOS I', category: 'curso' },
+  { value: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', label: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', category: 'curso' },
+  
+  // Project Management Diplomados
+  { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'diplomado' },
+  
+  // Project Management PEE & Specializations
+  { value: 'ANALISTA DE PROYECTOS', label: 'ANALISTA DE PROYECTOS', category: 'pee' },
+  { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'especializacion' },
+  
+  // Finance Courses
+  { value: 'COSTOS Y PRESUPUESTOS', label: 'COSTOS Y PRESUPUESTOS', category: 'curso' },
+  { value: 'CONTABILIDAD FINANCIERA CON ERP', label: 'CONTABILIDAD FINANCIERA CON ERP', category: 'curso' },
+  { value: 'PLANEAMIENTO FINANCIERO', label: 'PLANEAMIENTO FINANCIERO', category: 'curso' },
+  
+  // Finance Specializations & Diplomados
+  { value: 'FINANZAS APLICADAS', label: 'FINANZAS APLICADAS', category: 'especializacion' },
+  { value: 'GESTIÓN FINANCIERA', label: 'GESTIÓN FINANCIERA', category: 'diplomado' },
+  
+  // Other Courses
+  { value: 'GESTIÓN DE COMERCIO INTERNACIONAL', label: 'GESTIÓN DE COMERCIO INTERNACIONAL', category: 'curso' },
+  { value: 'PROGRAMACIÓN WEB', label: 'PROGRAMACIÓN WEB', category: 'curso' },
+  { value: 'PROGRAMACIÓN JAVASCRIPT WEB', label: 'PROGRAMACIÓN JAVASCRIPT WEB', category: 'curso' },
+  { value: 'REACT JS & REACT NATIVE', label: 'REACT JS & REACT NATIVE', category: 'curso' },
+  { value: 'CIBERSEGURIDAD', label: 'CIBERSEGURIDAD', category: 'curso' },
+  { value: 'DESARROLLO FRONT END', label: 'DESARROLLO FRONT END', category: 'especializacion' },
+  { value: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', label: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', category: 'curso' },
+  { value: 'AUTOCAD', label: 'AUTOCAD', category: 'curso' }
+]
 }
 const canNext = computed(() => currentStep.value < maxStep && sectionReady(currentStep.value))
 
@@ -1044,7 +1108,21 @@ async function submit(){
     programList.value = catalogo.programs.filter(p => p.category === opcion.value)
     
   }
-    
+      
+  function clearFile(side) {
+    // borrar de la reactividad
+    files[side] = null
+    previews[side] = ''
+    touchedFiles[side] = false
+
+    // limpiar input nativo
+    if (side === 'front' && dniFront.value) {
+      dniFront.value.value = ''
+    }
+    if (side === 'back' && dniBack.value) {
+      dniBack.value.value = ''
+    }
+  }
 
 
 </script>
@@ -1057,7 +1135,17 @@ async function submit(){
 @media (max-width: 1100px){ .grid { grid-template-columns: 1fr; } }
 
 /* ====== Topbar ====== */
-.topbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 16px; border-radius:16px; background:linear-gradient(135deg,#eef2ff,#f5f3ff); border:1px solid #e5e7eb; box-shadow: 0 6px 20px rgba(0,0,0,.04); }
+.topbar {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg,#eef2ff,#f5f3ff);
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 6px 20px rgba(0,0,0,.04);
+}
 .brand{ display:flex; align-items:center; gap:12px; }
 .brand-title{ font-weight:700; letter-spacing:.2px; }
 .brand-sub{ font-size:.8rem; color:#6b7280; }
@@ -1110,6 +1198,10 @@ input:focus, select:focus{ border-color:#93c5fd; box-shadow:0 0 0 4px rgba(59,13
 /* Step nav */
 .step-nav{ display:flex; justify-content:space-between; margin-top:8px; }
 
+/* Cuando es el paso 1, centramos los botones */
+.step-nav--center {
+  justify-content: center;
+}
 /* Thumbnails */
 .thumb{ margin-top:8px; border:1px solid #e5e7eb; border-radius:10px; padding:6px; width:100%; max-width:240px; background:#fafafa }
 .thumb img{ width:100%; border-radius:8px; display:block; }
@@ -1179,5 +1271,181 @@ input:focus, select:focus{ border-color:#93c5fd; box-shadow:0 0 0 4px rgba(59,13
 .modal-icon{ font-size: 40px; margin-bottom: 6px; }
 .modal-title{ margin: 0 0 6px; font-size: 1.15rem; }
 .modal-text{ margin: 0 0 14px; color:#6b7280; }
+.brand-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0; /* que no se achique demasiado */
+}
+
+.brand-title {
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+.brand-sub {
+  font-size: .8rem;
+  color: #6b7280;
+}
+.brand-banner {
+  flex: 1;                         /* ocupa todo el espacio restante */
+  display: flex;
+  align-items:center;
+  justify-content: flex-end;      /* 👈 esto lo pega a la derecha */
+}
+
+.brand-banner-img {
+  width: 100%;                     /* se estira horizontalmente */
+  max-height: 56px;                /* ajusta a tu gusto */
+  object-fit: cover;               /* recorta un poquito si hace falta */
+  border-radius: 999px;            /* opcional: que se vea “pill” */
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .brand-banner {
+    justify-content: center;      /* en móvil lo centramos */
+  }
+
+  .brand-banner-img {
+    max-width: 100%;
+    max-height: 48px;
+  }
+}
+.file-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 40px; /* espacio para la X */
+}
+
+/* El input ocupa todo el ancho */
+.file-input-wrap input[type="file"] {
+  flex: 1;
+}
+
+/* Nombre del archivo (opcional) */
+.file-name {
+  position: absolute;
+  left: 12px;
+  right: 40px;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: .8rem;
+  color: #4b5563;
+}
+
+/* Botón X */
+.file-clear {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 999px;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.file-clear:hover {
+  background: #b91c1c;
+}
+.upload-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px dashed #cbd5f5;
+  background: #f9fafb;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.upload-card:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(59,130,246,.12);
+}
+
+.upload-card--filled {
+  border-style: solid;
+  border-color: #3b82f6;
+  background: #ffffff;
+}
+
+.upload-card__icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.upload-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.upload-card__title {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.upload-card__subtitle {
+  font-size: .8rem;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Botón X */
+.upload-card__clear {
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  border-radius: 999px;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.upload-card__clear:hover {
+  background: #b91c1c;
+}
+
+/* Input file real: invisible pero ocupa toda la card */
+.upload-card__input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
 
 </style>
