@@ -15,16 +15,15 @@
           <div class="brand-sub">Ficha de certificación</div>
         </div>
       </div>
-
-      <!-- DERECHA: banner que se estira -->
-      <div class="brand-banner">
-        <picture>
-          <source srcset="/inicio.webp" type="image/webp" />
-          <img src="/primer.png" alt="Banner WE Educación Ejecutiva" class="brand-banner-img" />
-        </picture>
-      </div>
     </header>
 
+    <!-- 🔹 NUEVO: banner full-width sin marco -->
+    <div class="hero-banner hero-banner--plain">
+      <picture>
+        <source srcset="/inicio.webp" type="image/webp" />
+        <img src="/primer.png" alt="Banner WE Educación Ejecutiva" class="hero-banner-img" />
+      </picture>
+    </div>
 
 
     <!-- Progress + Stepper -->
@@ -80,11 +79,12 @@
                   <small v-if="touched.email && !form.email" class="err">Requerido</small>
                 </div>
 
-                <div class="field col-3">
+                
+
+                <div class="field col-4">
                   <label>Nro. de Documento <span class="req">*</span></label>
                   <input autocomplete="new-password"
                     v-model.trim="form.documento"
-                    placeholder="nro de documento"
                     @blur="touch('documento')"
                     v-restrict="{ only: 'numbers', max: 20 }"
                     :class="vClass('documento')"
@@ -92,7 +92,7 @@
                   <small v-if="touched.documento && !form.documento" class="err">Requerido</small>
                 </div>
 
-                <div class="field col-2">
+                <div class="field col-3">
                   <label>Fecha de Nacimiento <span class="req">*</span></label>
                   <input autocomplete="new-password" v-model="form.born" type="date"
                     @blur="touch('born')"
@@ -104,7 +104,7 @@
                   <label>Apellidos <span class="req">*</span></label>
                   <input autocomplete="new-password"
                     v-model.trim="form.apellidos"
-                    placeholder="Paterno y materno"
+                    placeholder="Apellidos"
                     @blur="touch('apellidos')"
                     v-restrict="{ only: 'letters', max: 80, transform:'upper' }"
                     :class="vClass('apellidos')"
@@ -116,7 +116,7 @@
                   <label>Nombres <span class="req">*</span></label>
                   <input autocomplete="new-password"
                     v-model.trim="form.nombres"
-                    placeholder="Tus nombres"
+                    placeholder="Nombres"
                     v-restrict="{ only: 'letters', max: 80, transform:'upper' }"
                     @blur="touch('nombres')"
                     :class="vClass('nombres')"
@@ -234,9 +234,9 @@
                     placeholder="Selecciona…"
                   />
                 </div>
-                <div class="field col-4">
+                <div class="field col-4" v-if="form.pais">
                   <label>Departamento / Región <span class="req">*</span></label>
-                  <input v-restrict="{ max: 80, transform:'upper' }"
+                  <input v-restrict="{ max: 80, only:'letters'}"
                    autocomplete="new-password" v-model.trim="form.departamento" placeholder="Lima, Santiago, Buenos Aires etc." />
                 </div>
               </div>
@@ -1289,20 +1289,31 @@ input:focus, select:focus{ border-color:#93c5fd; box-shadow:0 0 0 4px rgba(59,13
   font-size: .8rem;
   color: #6b7280;
 }
-.brand-banner {
-  flex: 1;                         /* ocupa todo el espacio restante */
-  display: flex;
-  align-items:center;
-  justify-content: flex-end;      /* 👈 esto lo pega a la derecha */
+
+/* Hero banner sin marco, pegado al ancho */
+.hero-banner {
+  margin-top: 4px;
 }
 
-.brand-banner-img {
-  width: 100%;                     /* se estira horizontalmente */
-  max-height: 56px;                /* ajusta a tu gusto */
-  object-fit: cover;               /* recorta un poquito si hace falta */
-  border-radius: 999px;            /* opcional: que se vea “pill” */
+.hero-banner--plain {
+  border-radius: 0;
+  overflow: hidden;
 }
 
+.hero-banner-img {
+  display: block;
+  width: 100%;
+  object-fit:contain;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* En móvil, que no sea tan alto */
+@media (max-width: 640px) {
+  .hero-banner-img {
+    max-height: 80px;
+  }
+}
 /* Responsive */
 @media (max-width: 640px) {
   .topbar {
