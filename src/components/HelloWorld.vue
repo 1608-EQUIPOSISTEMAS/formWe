@@ -628,9 +628,93 @@ const autosaveState = ref('inactivo')
  * -------------------- */
 const catalogo = {
   carreras: [
-    { value: 'industrial', label: 'Ingeniería Industrial' },
-    { value: 'sistemas', label: 'Ingeniería de Sistemas' }, { value: 'sistemas', label: 'Ingeniería de Software' }, { value: 'adm', label: 'Administración' }, { value: 'derecho', label: 'Derecho' }, { value: 'marketing', label: 'Marketing' }, { value: 'contabilidad', label: 'Contabilidad' }, { value: 'medicina', label: 'Medicina Humana' }, { value: 'arquitectura', label: 'Arquitectura' }, { value: 'comunicaciones', label: 'Ciencias de la Comunicación' }, { value: 'psicologia', label: 'Psicología' }, { value: 'educacion', label: 'Educación' }, { value: 'derecho', label: 'Derecho' }, { value: 'economia', label: 'Economía' }, { value: 'marketing', label: 'Marketing' }, { value: 'diseno', label: 'Diseño Gráfico' }, { value: 'gastronomia', label: 'Gastronomía' }, { value: 'turismo', label: 'Turismo y Hotelería' }, { value: 'mecanica', label: 'Ingeniería Mecánica' }, { value: 'civil', label: 'Ingeniería Civil' }, { value: 'quimica', label: 'Ingeniería Química' }, { value: 'ambiental', label: 'Ingeniería Ambiental' }, { value: 'minas', label: 'Ingeniería de Minas' }, { value: 'petroleo', label: 'Ingeniería de Petróleo' }, { value: 'agroindustrial', label: 'Ingeniería Agroindustrial' }, { value: 'zootecnia', label: 'Zootecnia' }, { value: 'veterinaria', label: 'Medicina Veterinaria' }, { value: 'enfermeria', label: 'Enfermería' }, { value: 'obstetricia', label: 'Obstetricia' }, { value: 'farmacia', label: 'Farmacia y Bioquímica' }, { value: 'nutricion', label: 'Nutrición' }, { value: 'odontologia', label: 'Odontología' }, { value: 'teatro', label: 'Arte Dramático' }, { value: 'musica', label: 'Música' }, { value: 'danza', label: 'Danza' }, { value: 'periodismo', label: 'Periodismo' }, { value: 'publicidad', label: 'Publicidad' }, { value: 'relaciones_publicas', label: 'Relaciones Públicas' }, { value: 'sociologia', label: 'Sociología' }, { value: 'antropologia', label: 'Antropología' }, { value: 'arqueologia', label: 'Arqueología' }, { value: 'historia', label: 'Historia' }, { value: 'filosofia', label: 'Filosofía' }, { value: 'literatura', label: 'Literatura' }, { value: 'linguistica', label: 'Lingüística' }, { value: 'matematicas', label: 'Matemáticas' }, { value: 'fisica', label: 'Física' }, { value: 'quimica_pura', label: 'Química Pura' }, { value: 'biologia', label: 'Biología' }, { value: 'genetica', label: 'Genética' }, { value: 'robotica', label: 'Robótica' }, { value: 'telecomunicaciones', label: 'Ingeniería de Telecomunicaciones' }, { value: 'energia', label: 'Ingeniería de la Energía' }, { value: 'textil', label: 'Ingeniería Textil' }, { value: 'pesquera', label: 'Ingeniería Pesquera' }, { value: 'forestal', label: 'Ingeniería Forestal' }, { value: 'geologica', label: 'Ingeniería Geológica' }, { value: 'metalurgica', label: 'Ingeniería Metalúrgica' }, { value: 'estadistica', label: 'Estadística' }, { value: 'actuaria', label: 'Ciencias Actuariales y Financieras' }, { value: 'hoteleria', label: 'Administración Hotelera' }, { value: 'turismo_sostenible', label: 'Turismo Sostenible' }, { value: 'negocios_internacionales', label: 'Negocios Internacionales'}, { value: 'gestion_publica', label: 'Gestión Pública' }, { value: 'ciencias_politicas', label: 'Ciencias Políticas' }, { value: 'relaciones_internacionales', label: 'Relaciones Internacionales' }, { value: 'oceanografia', label: 'Oceanografía' }, { value: 'meteorologia', label: 'Meteorología' }, { value: 'geografia', label: 'Geografía' }, { value: 'urbanismo', label: 'Urbanismo' }, { value: 'bibliotecologia', label: 'Bibliotecología y Ciencias de la Información' }, { value: 'conservacion', label: 'Conservación y Restauración' }, { value: 'traduccion', label: 'Traducción e Interpretación' }, { value: 'criminalistica', label: 'Criminalística' }, { value: 'seguridad', label: 'Seguridad y Defensa' }, { value: 'deporte', label: 'Ciencias del Deporte' }, { value: 'danza_arte', label: 'Danza y Arte Dramático' }, { value: 'fotografia', label: 'Fotografía' }, { value: 'joyeria', label: 'Joyería' }, { value: 'diseno_interiores', label: 'Diseño de Interiores' }, { value: 'diseno_modas', label: 'Diseño de Modas' }, { value: 'robotica_ia', label: 'Robótica e Inteligencia Artificial' }, { value: 'ciencia_datos', label: 'Ciencia de Datos' }, { value: 'ciberseguridad', label: 'Ciberseguridad' }, { value: 'blockchain', label: 'Tecnologías Blockchain' }, { value: 'energias_renovables', label: 'Ingeniería en Energías Renovables' }, { value: 'biotecnologia', label: 'Biotecnología' }, { value: 'neurociencia', label: 'Neurociencia' },
-    { value: 'otra',       label: 'Otra' }
+      { value: 'adm', label: 'Administración' },
+      { value: 'hoteleria', label: 'Administración Hotelera' },
+      { value: 'antropologia', label: 'Antropología' },
+      { value: 'arqueologia', label: 'Arqueología' },
+      { value: 'arquitectura', label: 'Arquitectura' },
+      { value: 'teatro', label: 'Arte Dramático' },
+      { value: 'bibliotecologia', label: 'Bibliotecología y Ciencias de la Información' },
+      { value: 'biologia', label: 'Biología' },
+      { value: 'biotecnologia', label: 'Biotecnología' },
+      { value: 'actuaria', label: 'Ciencias Actuariales y Financieras' },
+      { value: 'comunicaciones', label: 'Ciencias de la Comunicación' },
+      { value: 'ciencia_datos', label: 'Ciencia de Datos' },
+      { value: 'ciencias_politicas', label: 'Ciencias Políticas' },
+      { value: 'deporte', label: 'Ciencias del Deporte' },
+      { value: 'ciberseguridad', label: 'Ciberseguridad' },
+      { value: 'conservacion', label: 'Conservación y Restauración' },
+      { value: 'contabilidad', label: 'Contabilidad' },
+      { value: 'criminalistica', label: 'Criminalística' },
+      { value: 'danza', label: 'Danza' },
+      { value: 'danza_arte', label: 'Danza y Arte Dramático' },
+      { value: 'derecho', label: 'Derecho' },
+      { value: 'diseno', label: 'Diseño Gráfico' },
+      { value: 'diseno_interiores', label: 'Diseño de Interiores' },
+      { value: 'diseno_modas', label: 'Diseño de Modas' },
+      { value: 'economia', label: 'Economía' },
+      { value: 'educacion', label: 'Educación' },
+      { value: 'enfermeria', label: 'Enfermería' },
+      { value: 'estadistica', label: 'Estadística' },
+      { value: 'farmacia', label: 'Farmacia y Bioquímica' },
+      { value: 'filosofia', label: 'Filosofía' },
+      { value: 'fisica', label: 'Física' },
+      { value: 'fotografia', label: 'Fotografía' },
+      { value: 'gastronomia', label: 'Gastronomía' },
+      { value: 'genetica', label: 'Genética' },
+      { value: 'geografia', label: 'Geografía' },
+      { value: 'gestion_publica', label: 'Gestión Pública' },
+      { value: 'historia', label: 'Historia' },
+      { value: 'agroindustrial', label: 'Ingeniería Agroindustrial' },
+      { value: 'ambiental', label: 'Ingeniería Ambiental' },
+      { value: 'civil', label: 'Ingeniería Civil' },
+      { value: 'minas', label: 'Ingeniería de Minas' },
+      { value: 'energia', label: 'Ingeniería de la Energía' },
+      { value: 'petroleo', label: 'Ingeniería de Petróleo' },
+      { value: 'sistemas', label: 'Ingeniería de Sistemas' },
+      { value: 'sistemas', label: 'Ingeniería de Software' },
+      { value: 'telecomunicaciones', label: 'Ingeniería de Telecomunicaciones' },
+      { value: 'energias_renovables', label: 'Ingeniería en Energías Renovables' },
+      { value: 'forestal', label: 'Ingeniería Forestal' },
+      { value: 'geologica', label: 'Ingeniería Geológica' },
+      { value: 'industrial', label: 'Ingeniería Industrial' },
+      { value: 'mecanica', label: 'Ingeniería Mecánica' },
+      { value: 'metalurgica', label: 'Ingeniería Metalúrgica' },
+      { value: 'pesquera', label: 'Ingeniería Pesquera' },
+      { value: 'quimica', label: 'Ingeniería Química' },
+      { value: 'textil', label: 'Ingeniería Textil' },
+      { value: 'joyeria', label: 'Joyería' },
+      { value: 'linguistica', label: 'Lingüística' },
+      { value: 'literatura', label: 'Literatura' },
+      { value: 'marketing', label: 'Marketing' },
+      { value: 'matematicas', label: 'Matemáticas' },
+      { value: 'medicina', label: 'Medicina Humana' },
+      { value: 'veterinaria', label: 'Medicina Veterinaria' },
+      { value: 'meteorologia', label: 'Meteorología' },
+      { value: 'musica', label: 'Música' },
+      { value: 'negocios_internacionales', label: 'Negocios Internacionales' },
+      { value: 'neurociencia', label: 'Neurociencia' },
+      { value: 'nutricion', label: 'Nutrición' },
+      { value: 'obstetricia', label: 'Obstetricia' },
+      { value: 'oceanografia', label: 'Oceanografía' },
+      { value: 'odontologia', label: 'Odontología' },
+      { value: 'otra', label: 'Otra' },
+      { value: 'periodismo', label: 'Periodismo' },
+      { value: 'psicologia', label: 'Psicología' },
+      { value: 'publicidad', label: 'Publicidad' },
+      { value: 'quimica_pura', label: 'Química Pura' },
+      { value: 'relaciones_internacionales', label: 'Relaciones Internacionales' },
+      { value: 'relaciones_publicas', label: 'Relaciones Públicas' },
+      { value: 'robotica', label: 'Robótica' },
+      { value: 'robotica_ia', label: 'Robótica e Inteligencia Artificial' },
+      { value: 'seguridad', label: 'Seguridad y Defensa' },
+      { value: 'sociologia', label: 'Sociología' },
+      { value: 'blockchain', label: 'Tecnologías Blockchain' },
+      { value: 'traduccion', label: 'Traducción e Interpretación' },
+      { value: 'turismo', label: 'Turismo y Hotelería' },
+      { value: 'turismo_sostenible', label: 'Turismo Sostenible' },
+      { value: 'urbanismo', label: 'Urbanismo' },
+      { value: 'zootecnia', label: 'Zootecnia' }
   ],
   universidades: [
     { value: 'utp', label: 'UTP' }, 
@@ -643,92 +727,157 @@ const catalogo = {
     { value: 'nunca he laborado',  label: 'Nunca he laborado' }
   ],
   sectores: [
-    { value: 'educacion', label: 'Educación' },
-    { value: 'finanzas', label: 'Finanzas' },
-    { value: 'salud', label: 'Salud' },
-    { value: 'retail', label: 'Retail' },
-    { value: 'manufactura', label: 'Manufactura' },
-    { value: 'tecnologia', label: 'Tecnología' },
-    { value: 'consultoria', label: 'Consultoría' },
-    { value: 'gobierno', label: 'Gobierno' },
-    { value: 'energia', label: 'Energía' },
-    { value: 'construccion', label: 'Construcción' },
-    { value: 'medios', label: 'Medios y Comunicación' },
-    { value: 'turismo', label: 'Turismo' },
-    { value: 'automotriz', label: 'Automotriz' },
-    { value: 'inmobiliaria', label: 'Inmobiliaria' },
-    { value: 'servicios', label: 'Servicios' },
-    { value: 'agroindustria', label: 'Agroindustria' },
-    { value: 'mineria', label: 'Minería' },
-    { value: 'telecomunicaciones', label: 'Telecomunicaciones' },
-    { value: 'transporte', label: 'Transporte y Logística' },
-    { value: 'moda', label: 'Moda' },
-    { value: 'gastronomia', label: 'Gastronomía' },
-    { value: 'entretenimiento', label: 'Entretenimiento' },
-    { value: 'farmaceutica', label: 'Farmacéutica' },
-    { value: 'seguros', label: 'Seguros' },
-    { value: 'publicidad', label: 'Publicidad y Marketing' },
-    { value: 'legal', label: 'Legal' },
-    { value: 'investigacion', label: 'Investigación y Desarrollo' },
-    { value: 'organizaciones_sin_fines_lucro', label: 'Organizaciones sin fines de lucro' }
+      { value: 'agroindustria', label: 'Agroindustria' },
+      { value: 'automotriz', label: 'Automotriz' },
+      { value: 'construccion', label: 'Construcción' },
+      { value: 'consultoria', label: 'Consultoría' },
+      { value: 'educacion', label: 'Educación' },
+      { value: 'energia', label: 'Energía' },
+      { value: 'entretenimiento', label: 'Entretenimiento' },
+      { value: 'farmaceutica', label: 'Farmacéutica' },
+      { value: 'finanzas', label: 'Finanzas' },
+      { value: 'gastronomia', label: 'Gastronomía' },
+      { value: 'gobierno', label: 'Gobierno' },
+      { value: 'inmobiliaria', label: 'Inmobiliaria' },
+      { value: 'investigacion', label: 'Investigación y Desarrollo' },
+      { value: 'legal', label: 'Legal' },
+      { value: 'manufactura', label: 'Manufactura' },
+      { value: 'medios', label: 'Medios y Comunicación' },
+      { value: 'mineria', label: 'Minería' },
+      { value: 'moda', label: 'Moda' },
+      { value: 'organizaciones_sin_fines_lucro', label: 'Organizaciones sin fines de lucro' },
+      { value: 'publicidad', label: 'Publicidad y Marketing' },
+      { value: 'retail', label: 'Retail' },
+      { value: 'salud', label: 'Salud' },
+      { value: 'seguros', label: 'Seguros' },
+      { value: 'servicios', label: 'Servicios' },
+      { value: 'tecnologia', label: 'Tecnología' },
+      { value: 'telecomunicaciones', label: 'Telecomunicaciones' },
+      { value: 'transporte', label: 'Transporte y Logística' },
+      { value: 'turismo', label: 'Turismo' }
   ],
   areasTrabajo: [
-    { value: 'comercial', label: 'Comercial' },
-    { value: 'marketing', label: 'Marketing' },
-    { value: 'finanzas', label: 'Finanzas' },
-    { value: 'operaciones', label: 'Operaciones' },
-    { value: 'recursos_humanos', label: 'Recursos Humanos' },
-    { value: 'tecnologia', label: 'Tecnología' },
-    { value: 'legal', label: 'Legal' },
-    { value: 'administracion', label: 'Administración' },
-    { value: 'proyectos', label: 'Gestión de Proyectos' },
-    { value: 'calidad', label: 'Calidad' },
-    { value: 'investigacion_desarrollo', label: 'Investigación y Desarrollo' },
-    { value: 'logistica', label: 'Logística' },
-    { value: 'produccion', label: 'Producción' },
-    { value: 'consultoria', label: 'Consultoría' },
-    { value: 'atencion_cliente', label: 'Atención al Cliente' },
-    { value: 'diseno', label: 'Diseño' },
-    { value: 'educacion', label: 'Educación' },
-    { value: 'salud', label: 'Salud' },
-    { value: 'ventas', label: 'Ventas' },
-    { value: 'ingenieria', label: 'Ingeniería' },
-    { value: 'arte_diseno', label: 'Arte y Diseño' },
-    { value: 'ciencias', label: 'Ciencias' },
-    { value: 'salud', label: 'Salud' },
-    { value: 'servicios_publicos', label: 'Servicios Públicos' },
-    { value: 'medios_comunicacion', label: 'Medios de Comunicación' },
-    { value: 'consultoria_estrategica', label: 'Consultoría Estratégica' },
-    { value: 'investigacion_desarrollo', label: 'Investigación y Desarrollo' },
-    { value: 'logistica_cadena_suministro', label: 'Logística y Cadena de Suministro' },
-    { value: 'produccion_manufactura', label: 'Producción y Manufactura' },
-    { value: 'energia_recursos_naturales', label: 'Energía y Recursos Naturales' },
-    { value: 'construccion_infraestructura', label: 'Construcción e Infraestructura' },
-    { value: 'turismo_hoteleria', label: 'Turismo y Hotelería' },
-    { value: 'agroindustria', label: 'Agroindustria' },
-    { value: 'mineria_metalurgia', label: 'Minería y Metalurgia' },
-    { value: 'biotecnologia', label: 'Biotecnología' },
-    { value: 'medio_ambiente', label: 'Medio Ambiente' },
-    { value: 'seguridad_defensa', label: 'Seguridad y Defensa' },
-    { value: 'deportes_recreacion', label: 'Deportes y Recreación' },
-    { value: 'moda_belleza', label: 'Moda y Belleza' },
-    { value: 'entretenimiento_ocio', label: 'Entretenimiento y Ocio' },
-    { value: 'legal_judicial', label: 'Legal y Judicial' },
-    { value: 'comercio_exterior', label: 'Comercio Exterior' },
-    { value: 'banca_seguros', label: 'Banca y Seguros' }
+      { value: 'administracion', label: 'Administración' },
+      { value: 'agroindustria', label: 'Agroindustria' },
+      { value: 'arte_diseno', label: 'Arte y Diseño' },
+      { value: 'atencion_cliente', label: 'Atención al Cliente' },
+      { value: 'banca_seguros', label: 'Banca y Seguros' },
+      { value: 'biotecnologia', label: 'Biotecnología' },
+      { value: 'calidad', label: 'Calidad' },
+      { value: 'ciencias', label: 'Ciencias' },
+      { value: 'comercial', label: 'Comercial' },
+      { value: 'comercio_exterior', label: 'Comercio Exterior' },
+      { value: 'construccion_infraestructura', label: 'Construcción e Infraestructura' },
+      { value: 'consultoria', label: 'Consultoría' },
+      { value: 'consultoria_estrategica', label: 'Consultoría Estratégica' },
+      { value: 'deportes_recreacion', label: 'Deportes y Recreación' },
+      { value: 'diseno', label: 'Diseño' },
+      { value: 'educacion', label: 'Educación' },
+      { value: 'energia_recursos_naturales', label: 'Energía y Recursos Naturales' },
+      { value: 'entretenimiento_ocio', label: 'Entretenimiento y Ocio' },
+      { value: 'finanzas', label: 'Finanzas' },
+      { value: 'proyectos', label: 'Gestión de Proyectos' },
+      { value: 'ingenieria', label: 'Ingeniería' },
+      { value: 'investigacion_desarrollo', label: 'Investigación y Desarrollo' },
+      { value: 'legal', label: 'Legal' },
+      { value: 'legal_judicial', label: 'Legal y Judicial' },
+      { value: 'logistica', label: 'Logística' },
+      { value: 'logistica_cadena_suministro', label: 'Logística y Cadena de Suministro' },
+      { value: 'marketing', label: 'Marketing' },
+      { value: 'medio_ambiente', label: 'Medio Ambiente' },
+      { value: 'medios_comunicacion', label: 'Medios de Comunicación' },
+      { value: 'mineria_metalurgia', label: 'Minería y Metalurgia' },
+      { value: 'moda_belleza', label: 'Moda y Belleza' },
+      { value: 'operaciones', label: 'Operaciones' },
+      { value: 'produccion', label: 'Producción' },
+      { value: 'produccion_manufactura', label: 'Producción y Manufactura' },
+      { value: 'recursos_humanos', label: 'Recursos Humanos' },
+      { value: 'salud', label: 'Salud' },
+      { value: 'seguridad_defensa', label: 'Seguridad y Defensa' },
+      { value: 'servicios_publicos', label: 'Servicios Públicos' },
+      { value: 'tecnologia', label: 'Tecnología' },
+      { value: 'turismo_hoteleria', label: 'Turismo y Hotelería' },
+      { value: 'ventas', label: 'Ventas' }
   ],
   grados: [
+    { value: 'primaria', label: 'Primaria Completa' },
+    { value: 'secundaria', label: 'Secundaria Completa' },
     { value: 'tecnico', label: 'Técnico' },
     { value: 'bachiller', label: 'Bachiller' },
     { value: 'titulo', label: 'Título' },
     { value: 'maestria', label: 'Maestría' },
-    { value: 'cursando', label: 'Cursando' },
-    { value: 'secundaria', label: 'Secundaria Completa' },
-    { value: 'primaria', label: 'Primaria Completa' },
+    { value: 'doctorado', label: 'Doctorado' },
   ],
   paises: [
-    { value: 'pe', label: 'Perú' },
-    { value: 'mx', label: 'México' }, { value: 'co', label: 'Colombia' }, { value: 'cl', label: 'Chile' }, { value: 'ar', label: 'Argentina' }, { value: 'br', label: 'Brasil' }, { value: 'ec', label: 'Ecuador' }, { value: 'bo', label: 'Bolivia' }, { value: 'uy', label: 'Uruguay' }, { value: 'py', label: 'Paraguay' }, { value: 've', label: 'Venezuela' }, { value: 'pa', label: 'Panamá' }, { value: 'cr', label: 'Costa Rica' }, { value: 'gt', label: 'Guatemala' }, { value: 'sv', label: 'El Salvador' }, { value: 'hn', label: 'Honduras' }, { value: 'ni', label: 'Nicaragua' }, { value: 'do', label: 'República Dominicana' }, { value: 'cu', label: 'Cuba' }, { value: 'pr', label: 'Puerto Rico' }, { value: 'es', label: 'España' }, { value: 'us', label: 'Estados Unidos' }, { value: 'ca', label: 'Canadá' }, { value: 'fr', label: 'Francia' }, { value: 'de', label: 'Alemania' }, { value: 'it', label: 'Italia' }, { value: 'pt', label: 'Portugal' }, { value: 'uk', label: 'Reino Unido' }, { value: 'au', label: 'Australia' }, { value: 'nz', label: 'Nueva Zelanda' }, { value: 'jp', label: 'Japón' }, { value: 'cn', label: 'China' }, { value: 'in', label: 'India' }, { value: 'za', label: 'Sudáfrica' }, { value: 'ru', label: 'Rusia' }, { value: 'se', label: 'Suecia' }, { value: 'no', label: 'Noruega' }, { value: 'dk', label: 'Dinamarca' }, { value: 'be', label: 'Bélgica' }, { value: 'ch', label: 'Suiza' }, { value: 'at', label: 'Austria' }, { value: 'ie', label: 'Irlanda' }, { value: 'nz', label: 'Nueva Zelanda' }, { value: 'sg', label: 'Singapur' }, { value: 'ae', label: 'Emiratos Árabes Unidos' }, { value: 'qa', label: 'Qatar' }, { value: 'sa', label: 'Arabia Saudita' }, { value: 'kr', label: 'Corea del Sur' }, { value: 'th', label: 'Tailandia' }, { value: 'my', label: 'Malasia' }, { value: 'id', label: 'Indonesia' }, { value: 'ph', label: 'Filipinas' }, { value: 'vn', label: 'Vietnam' }, { value: 'eg', label: 'Egipto' }, { value: 'ma', label: 'Marruecos' }, { value: 'ng', label: 'Nigeria' }, { value: 'ke', label: 'Kenia' }, { value: 'gh', label: 'Ghana' }, { value: 'et', label: 'Etiopía' }, { value: 'tz', label: 'Tanzania' }, { value: 'ug', label: 'Uganda' }, { value: 'dz', label: 'Argelia' }, { value: 'tn', label: 'Túnez' }, { value: 'ly', label: 'Libia' }, { value: 'sd', label: 'Sudán' }, { value: 'cd', label: 'República Democrática del Congo' }, { value: 'ao', label: 'Angola' }, { value: 'mz', label: 'Mozambique' }, { value: 'zm', label: 'Zambia' }, { value: 'zw', label: 'Zimbabue' }
+      { value: 'ae', label: 'Emiratos Árabes Unidos' },
+      { value: 'de', label: 'Alemania' },
+      { value: 'ao', label: 'Angola' },
+      { value: 'sa', label: 'Arabia Saudita' },
+      { value: 'dz', label: 'Argelia' },
+      { value: 'ar', label: 'Argentina' },
+      { value: 'au', label: 'Australia' },
+      { value: 'at', label: 'Austria' },
+      { value: 'be', label: 'Bélgica' },
+      { value: 'bo', label: 'Bolivia' },
+      { value: 'br', label: 'Brasil' },
+      { value: 'ca', label: 'Canadá' },
+      { value: 'cl', label: 'Chile' },
+      { value: 'cn', label: 'China' },
+      { value: 'co', label: 'Colombia' },
+      { value: 'kr', label: 'Corea del Sur' },
+      { value: 'cr', label: 'Costa Rica' },
+      { value: 'cu', label: 'Cuba' },
+      { value: 'dk', label: 'Dinamarca' },
+      { value: 'ec', label: 'Ecuador' },
+      { value: 'eg', label: 'Egipto' },
+      { value: 'sv', label: 'El Salvador' },
+      { value: 'es', label: 'España' },
+      { value: 'us', label: 'Estados Unidos' },
+      { value: 'et', label: 'Etiopía' },
+      { value: 'ph', label: 'Filipinas' },
+      { value: 'fr', label: 'Francia' },
+      { value: 'gh', label: 'Ghana' },
+      { value: 'gt', label: 'Guatemala' },
+      { value: 'hn', label: 'Honduras' },
+      { value: 'in', label: 'India' },
+      { value: 'id', label: 'Indonesia' },
+      { value: 'ie', label: 'Irlanda' },
+      { value: 'it', label: 'Italia' },
+      { value: 'jp', label: 'Japón' },
+      { value: 'ke', label: 'Kenia' },
+      { value: 'ly', label: 'Libia' },
+      { value: 'my', label: 'Malasia' },
+      { value: 'ma', label: 'Marruecos' },
+      { value: 'mx', label: 'México' },
+      { value: 'mz', label: 'Mozambique' },
+      { value: 'ni', label: 'Nicaragua' },
+      { value: 'ng', label: 'Nigeria' },
+      { value: 'no', label: 'Noruega' },
+      { value: 'nz', label: 'Nueva Zelanda' },
+      { value: 'pa', label: 'Panamá' },
+      { value: 'py', label: 'Paraguay' },
+      { value: 'pe', label: 'Perú' },
+      { value: 'pt', label: 'Portugal' },
+      { value: 'pr', label: 'Puerto Rico' },
+      { value: 'qa', label: 'Qatar' },
+      { value: 'uk', label: 'Reino Unido' },
+      { value: 'cd', label: 'República Democrática del Congo' },
+      { value: 'do', label: 'República Dominicana' },
+      { value: 'ru', label: 'Rusia' },
+      { value: 'sg', label: 'Singapur' },
+      { value: 'za', label: 'Sudáfrica' },
+      { value: 'sd', label: 'Sudán' },
+      { value: 'se', label: 'Suecia' },
+      { value: 'ch', label: 'Suiza' },
+      { value: 'th', label: 'Tailandia' },
+      { value: 'tz', label: 'Tanzania' },
+      { value: 'tn', label: 'Túnez' },
+      { value: 'ug', label: 'Uganda' },
+      { value: 'uy', label: 'Uruguay' },
+      { value: 've', label: 'Venezuela' },
+      { value: 'vn', label: 'Vietnam' },
+      { value: 'zm', label: 'Zambia' },
+      { value: 'zw', label: 'Zimbabue' }
   ],
   categories: [
     { value: 'diplomado', label: 'Diplomado' },
@@ -744,128 +893,246 @@ const catalogo = {
     { value: 'otro', label: 'Otro' }
   ],
   programs: [
-  // SAP Courses
-  { value: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', label: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', category: 'curso' },
-  { value: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', label: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', category: 'curso' },
-  { value: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', label: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', category: 'curso' },
-  { value: 'SAP S/4 HANA PP: PRODUCCIÓN', label: 'SAP S/4 HANA PP: PRODUCCIÓN', category: 'curso' },
-  { value: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', label: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', category: 'curso' },
-  { value: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', label: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', category: 'curso' },
-  { value: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', label: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', category: 'curso' },
-  { value: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', label: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', category: 'curso' },
-  
-  // SAP Specializations
-  { value: 'SAP S/4 HANA: LOGÍSTICA INTEGRAL', label: 'SAP S/4 HANA: LOGÍSTICA INTEGRAL', category: 'especializacion' },
-  { value: 'SAP S/4 HANA: COMPRAS Y ALMACENES', label: 'SAP S/4 HANA: COMPRAS Y ALMACENES', category: 'especializacion' },
-  { value: 'SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', label: 'SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', category: 'especializacion' },
-  { value: 'SAP S/4 HANA: GESTIÓN FINANCIERA', label: 'SAP S/4 HANA: GESTIÓN FINANCIERA', category: 'especializacion' },
-  { value: 'SAP S/4 HANA', label: 'SAP S/4 HANA', category: 'especializacion' },
-  { value: 'SAP S/4 HANA: MINERÍA', label: 'SAP S/4 HANA: MINERÍA', category: 'especializacion' },
-  
-  // Excel Courses
-  { value: 'MICROSOFT EXCEL BÁSICO', label: 'MICROSOFT EXCEL BÁSICO', category: 'curso' },
-  { value: 'MICROSOFT EXCEL INTERMEDIO', label: 'MICROSOFT EXCEL INTERMEDIO', category: 'curso' },
-  { value: 'MICROSOFT EXCEL AVANZADO', label: 'MICROSOFT EXCEL AVANZADO', category: 'curso' },
-  { value: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', label: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', category: 'curso' },
-  
-  // Excel Specializations
-  { value: 'MICROSOFT EXCEL', label: 'MICROSOFT EXCEL', category: 'especializacion' },
-  { value: 'VBA MACROS EN MICROSOFT EXCEL', label: 'VBA MACROS EN MICROSOFT EXCEL', category: 'especializacion' },
-  { value: 'EXCEL EXPERT', label: 'EXCEL EXPERT', category: 'especializacion' },
-  
-  // Data & Analytics Courses
-  { value: 'SQL SERVER FOR ANALYTICS', label: 'SQL SERVER FOR ANALYTICS', category: 'curso' },
-  { value: 'SQL SERVER AVANZADO', label: 'SQL SERVER AVANZADO', category: 'curso' },
-  { value: 'POWER BI', label: 'POWER BI', category: 'curso' },
-  { value: 'POWER BI AVANZADO - DAX', label: 'POWER BI AVANZADO - DAX', category: 'curso' },
-  { value: 'DATA ANALYTICS', label: 'DATA ANALYTICS', category: 'curso' },
-  { value: 'BUSINESS ANALYTICS', label: 'BUSINESS ANALYTICS', category: 'curso' },
-  { value: 'PYTHON: ANÁLISIS DE DATOS', label: 'PYTHON: ANÁLISIS DE DATOS', category: 'curso' },
-  { value: 'PYTHON AVANZADO: MACHINE LEARNING', label: 'PYTHON AVANZADO: MACHINE LEARNING', category: 'curso' },
-  { value: 'IA & DEEP LEARNING', label: 'IA & DEEP LEARNING', category: 'curso' },
-  { value: 'AZURE', label: 'AZURE', category: 'curso' },
-  { value: 'DATABRICKS', label: 'DATABRICKS', category: 'curso' },
-  
-  // Data Diplomados
-  { value: 'INTELIGENCIA Y ANÁLISIS DE DATOS', label: 'INTELIGENCIA Y ANÁLISIS DE DATOS', category: 'diplomado' },
-  
-  // Data Specializations
-  { value: 'POWER BI', label: 'POWER BI', category: 'especializacion' },
-  { value: 'SQL SERVER', label: 'SQL SERVER', category: 'especializacion' },
-  { value: 'PYTHON: DATA SCIENCE', label: 'PYTHON: DATA SCIENCE', category: 'especializacion' },
-  
-  // Data PEE
-  { value: 'ANALISTA DE DATOS', label: 'ANALISTA DE DATOS', category: 'pee' },
-  
-  // Supply Chain Courses
-  { value: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', label: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', category: 'curso' },
-  { value: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', label: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', category: 'curso' },
-  { value: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', label: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', category: 'curso' },
-  { value: 'LEAN LOGISTICS', label: 'LEAN LOGISTICS', category: 'curso' },
-  { value: 'KPIS LOGÍSTICOS CON POWER BI', label: 'KPIS LOGÍSTICOS CON POWER BI', category: 'curso' },
-  { value: 'GESTIÓN DE COMPRAS Y PROVEEDORES', label: 'GESTIÓN DE COMPRAS Y PROVEEDORES', category: 'curso' },
-  { value: 'SUPPLY CHAIN ANALYTICS', label: 'SUPPLY CHAIN ANALYTICS', category: 'curso' },
-  
-  // Supply Chain Diplomados
-  { value: 'SUPPLY CHAIN MANAGEMENT', label: 'SUPPLY CHAIN MANAGEMENT', category: 'diplomado' },
-  
-  // Supply Chain Specializations & PEE
-  { value: 'ESPECIALISTA EN COMPRAS CON SAP', label: 'ESPECIALISTA EN COMPRAS CON SAP', category: 'especializacion' },
-  { value: 'ANALISTA DE COMPRAS CON SAP', label: 'ANALISTA DE COMPRAS CON SAP', category: 'pee' },
-  { value: 'PLANEAMIENTO DE LA DEMANDA', label: 'PLANEAMIENTO DE LA DEMANDA', category: 'pee' },
-  
-  // Process Management Courses
-  { value: 'GESTIÓN DE PROCESOS', label: 'GESTIÓN DE PROCESOS', category: 'curso' },
-  { value: 'BIZAGI: MODELAMIENTO DE PROCESOS', label: 'BIZAGI: MODELAMIENTO DE PROCESOS', category: 'curso' },
-  { value: 'LEAN SIX SIGMA', label: 'LEAN SIX SIGMA', category: 'curso' },
-  { value: 'GESTIÓN DE INDICADORES KPIS Y OKRS', label: 'GESTIÓN DE INDICADORES KPIS Y OKRS', category: 'curso' },
-  { value: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', label: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', category: 'curso' },
-  { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'curso' },
-  { value: 'POWER APPS Y POWER AUTOMATE AVANZADO', label: 'POWER APPS Y POWER AUTOMATE AVANZADO', category: 'curso' },
-  { value: 'MODELAMIENTO DE PROCESOS CON BIZAGI', label: 'MODELAMIENTO DE PROCESOS CON BIZAGI', category: 'curso' },
-  { value: 'LEAN SIX SIGMA YELLOW BELT', label: 'LEAN SIX SIGMA YELLOW BELT', category: 'curso' },
-  { value: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', label: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', category: 'curso' },
-  
-  // Process Management Diplomados
-  { value: 'GESTIÓN DE PROCESOS Y MEJORA CONTINUA', label: 'GESTIÓN DE PROCESOS Y MEJORA CONTINUA', category: 'diplomado' },
-  
-  // Process Management Specializations & PEE
-  { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'especializacion' },
-  { value: 'ANALISTA DE PROCESOS', label: 'ANALISTA DE PROCESOS', category: 'pee' },
-  
-  // Project Management Courses
-  { value: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', label: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', category: 'curso' },
-  { value: 'GESTIÓN FINANCIERA DE PROYECTOS', label: 'GESTIÓN FINANCIERA DE PROYECTOS', category: 'curso' },
-  { value: 'GESTIÓN ÁGIL DE PROYECTOS', label: 'GESTIÓN ÁGIL DE PROYECTOS', category: 'curso' },
-  { value: 'GESTIÓN DE PROYECTOS I', label: 'GESTIÓN DE PROYECTOS I', category: 'curso' },
-  { value: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', label: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', category: 'curso' },
-  
-  // Project Management Diplomados
-  { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'diplomado' },
-  
-  // Project Management PEE & Specializations
-  { value: 'ANALISTA DE PROYECTOS', label: 'ANALISTA DE PROYECTOS', category: 'pee' },
-  { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'especializacion' },
-  
-  // Finance Courses
-  { value: 'COSTOS Y PRESUPUESTOS', label: 'COSTOS Y PRESUPUESTOS', category: 'curso' },
-  { value: 'CONTABILIDAD FINANCIERA CON ERP', label: 'CONTABILIDAD FINANCIERA CON ERP', category: 'curso' },
-  { value: 'PLANEAMIENTO FINANCIERO', label: 'PLANEAMIENTO FINANCIERO', category: 'curso' },
-  
-  // Finance Specializations & Diplomados
-  { value: 'FINANZAS APLICADAS', label: 'FINANZAS APLICADAS', category: 'especializacion' },
-  { value: 'GESTIÓN FINANCIERA', label: 'GESTIÓN FINANCIERA', category: 'diplomado' },
-  
-  // Other Courses
-  { value: 'GESTIÓN DE COMERCIO INTERNACIONAL', label: 'GESTIÓN DE COMERCIO INTERNACIONAL', category: 'curso' },
-  { value: 'PROGRAMACIÓN WEB', label: 'PROGRAMACIÓN WEB', category: 'curso' },
-  { value: 'PROGRAMACIÓN JAVASCRIPT WEB', label: 'PROGRAMACIÓN JAVASCRIPT WEB', category: 'curso' },
-  { value: 'REACT JS & REACT NATIVE', label: 'REACT JS & REACT NATIVE', category: 'curso' },
-  { value: 'CIBERSEGURIDAD', label: 'CIBERSEGURIDAD', category: 'curso' },
-  { value: 'DESARROLLO FRONT END', label: 'DESARROLLO FRONT END', category: 'especializacion' },
-  { value: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', label: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', category: 'curso' },
-  { value: 'AUTOCAD', label: 'AUTOCAD', category: 'curso' }
-]
+    // ANALISTA DE COMPRAS CON SAP
+    { value: 'ANALISTA DE COMPRAS CON SAP', label: 'ANALISTA DE COMPRAS CON SAP', category: 'pee' },
+
+    // ANALISTA DE DATOS
+    { value: 'ANALISTA DE DATOS', label: 'ANALISTA DE DATOS', category: 'pee' },
+
+    // ANALISTA DE PROCESOS
+    { value: 'ANALISTA DE PROCESOS', label: 'ANALISTA DE PROCESOS', category: 'pee' },
+
+    // ANALISTA DE PROYECTOS
+    { value: 'ANALISTA DE PROYECTOS', label: 'ANALISTA DE PROYECTOS', category: 'pee' },
+
+    // AUTOCAD
+    { value: 'AUTOCAD', label: 'AUTOCAD', category: 'curso' },
+
+    // AZURE
+    { value: 'AZURE', label: 'AZURE', category: 'curso' },
+
+    // BIZAGI: MODELAMIENTO DE PROCESOS
+    { value: 'BIZAGI: MODELAMIENTO DE PROCESOS', label: 'BIZAGI: MODELAMIENTO DE PROCESOS', category: 'curso' },
+
+    // BUSINESS ANALYTICS
+    { value: 'BUSINESS ANALYTICS', label: 'BUSINESS ANALYTICS', category: 'curso' },
+
+    // CIBERSEGURIDAD
+    { value: 'CIBERSEGURIDAD', label: 'CIBERSEGURIDAD', category: 'curso' },
+
+    // CONTABILIDAD FINANCIERA CON ERP
+    { value: 'CONTABILIDAD FINANCIERA CON ERP', label: 'CONTABILIDAD FINANCIERA CON ERP', category: 'curso' },
+
+    // COSTOS Y PRESUPUESTOS
+    { value: 'COSTOS Y PRESUPUESTOS', label: 'COSTOS Y PRESUPUESTOS', category: 'curso' },
+
+    // DATA ANALYTICS
+    { value: 'DATA ANALYTICS', label: 'DATA ANALYTICS', category: 'curso' },
+
+    // DATABRICKS
+    { value: 'DATABRICKS', label: 'DATABRICKS', category: 'curso' },
+
+    // DESARROLLO FRONT END
+    { value: 'DESARROLLO FRONT END', label: 'DESARROLLO FRONT END', category: 'especializacion' },
+
+    // ESPECIALISTA EN COMPRAS CON SAP
+    { value: 'ESPECIALISTA EN COMPRAS CON SAP', label: 'ESPECIALISTA EN COMPRAS CON SAP', category: 'especializacion' },
+
+    // ESTRATEGIAS Y TÉCNICAS COMERICALES
+    { value: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', label: 'ESTRATEGIAS Y TÉCNICAS COMERICALES', category: 'curso' },
+
+    // EXCEL EXPERT
+    { value: 'EXCEL EXPERT', label: 'EXCEL EXPERT', category: 'especializacion' },
+
+    // FINANZAS APLICADAS
+    { value: 'FINANZAS APLICADAS', label: 'FINANZAS APLICADAS', category: 'especializacion' },
+
+    // GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES
+    { value: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', label: 'GERENCIA DE CENTROS DE DISTRIBUCIÓN Y ALMACENES', category: 'curso' },
+
+    // GESTIÓN ÁGIL DE PROYECTOS
+    { value: 'GESTIÓN ÁGIL DE PROYECTOS', label: 'GESTIÓN ÁGIL DE PROYECTOS', category: 'curso' },
+
+    // GESTIÓN DE COMERCIO INTERNACIONAL
+    { value: 'GESTIÓN DE COMERCIO INTERNACIONAL', label: 'GESTIÓN DE COMERCIO INTERNACIONAL', category: 'curso' },
+
+    // GESTIÓN DE COMPRAS Y PROVEEDORES
+    { value: 'GESTIÓN DE COMPRAS Y PROVEEDORES', label: 'GESTIÓN DE COMPRAS Y PROVEEDORES', category: 'curso' },
+
+    // GESTIÓN DE INDICADORES KPIS Y OKRS
+    { value: 'GESTIÓN DE INDICADORES KPIS Y OKRS', label: 'GESTIÓN DE INDICADORES KPIS Y OKRS', category: 'curso' },
+
+    // GESTIÓN DE PROCESOS
+    { value: 'GESTIÓN DE PROCESOS', label: 'GESTIÓN DE PROCESOS', category: 'curso' },
+
+    // GESTIÓN DE PROCESOS Y MEJORA CONTINUA
+    { value: 'GESTIÓN DE PROCESOS Y MEJORA CONTINUA', label: 'GESTIÓN DE PROCESOS Y MEJORA CONTINUA', category: 'diplomado' },
+
+    // GESTIÓN DE PROYECTOS
+    { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'diplomado' },
+    { value: 'GESTIÓN DE PROYECTOS', label: 'GESTIÓN DE PROYECTOS', category: 'especializacion' },
+
+    // GESTIÓN DE PROYECTOS I
+    { value: 'GESTIÓN DE PROYECTOS I', label: 'GESTIÓN DE PROYECTOS I', category: 'curso' },
+
+    // GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN
+    { value: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', label: 'GESTIÓN DE TRANSPORTES Y CANALES DE DISTRIBUCIÓN', category: 'curso' },
+
+    // GESTIÓN FINANCIERA
+    { value: 'GESTIÓN FINANCIERA', label: 'GESTIÓN FINANCIERA', category: 'diplomado' },
+
+    // GESTIÓN FINANCIERA DE PROYECTOS
+    { value: 'GESTIÓN FINANCIERA DE PROYECTOS', label: 'GESTIÓN FINANCIERA DE PROYECTOS', category: 'curso' },
+
+    // IA & DEEP LEARNING
+    { value: 'IA & DEEP LEARNING', label: 'IA & DEEP LEARNING', category: 'curso' },
+
+    // INTELIGENCIA Y ANÁLISIS DE DATOS
+    { value: 'INTELIGENCIA Y ANÁLISIS DE DATOS', label: 'INTELIGENCIA Y ANÁLISIS DE DATOS', category: 'diplomado' },
+
+    // KPIS LOGÍSTICOS CON POWER BI
+    { value: 'KPIS LOGÍSTICOS CON POWER BI', label: 'KPIS LOGÍSTICOS CON POWER BI', category: 'curso' },
+
+    // LEAN LOGISTICS
+    { value: 'LEAN LOGISTICS', label: 'LEAN LOGISTICS', category: 'curso' },
+
+    // LEAN SIX SIGMA
+    { value: 'LEAN SIX SIGMA', label: 'LEAN SIX SIGMA', category: 'curso' },
+
+    // LEAN SIX SIGMA YELLOW BELT
+    { value: 'LEAN SIX SIGMA YELLOW BELT', label: 'LEAN SIX SIGMA YELLOW BELT', category: 'curso' },
+
+    // MICROSOFT EXCEL
+    { value: 'MICROSOFT EXCEL', label: 'MICROSOFT EXCEL', category: 'especializacion' },
+
+    // MICROSOFT EXCEL AVANZADO
+    { value: 'MICROSOFT EXCEL AVANZADO', label: 'MICROSOFT EXCEL AVANZADO', category: 'curso' },
+
+    // MICROSOFT EXCEL BÁSICO
+    { value: 'MICROSOFT EXCEL BÁSICO', label: 'MICROSOFT EXCEL BÁSICO', category: 'curso' },
+
+    // MICROSOFT EXCEL INTERMEDIO
+    { value: 'MICROSOFT EXCEL INTERMEDIO', label: 'MICROSOFT EXCEL INTERMEDIO', category: 'curso' },
+
+    // MICROSOFT PROJECT: GESTIÓN DE PROYECTOS
+    { value: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', label: 'MICROSOFT PROJECT: GESTIÓN DE PROYECTOS', category: 'curso' },
+
+    // MODELAMIENTO DE PROCESOS CON BIZAGI
+    { value: 'MODELAMIENTO DE PROCESOS CON BIZAGI', label: 'MODELAMIENTO DE PROCESOS CON BIZAGI', category: 'curso' },
+
+    // PLANEAMIENTO DE LA DEMANDA
+    { value: 'PLANEAMIENTO DE LA DEMANDA', label: 'PLANEAMIENTO DE LA DEMANDA', category: 'pee' },
+
+    // PLANEAMIENTO FINANCIERO
+    { value: 'PLANEAMIENTO FINANCIERO', label: 'PLANEAMIENTO FINANCIERO', category: 'curso' },
+
+    // PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA
+    { value: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', label: 'PLANEAMIENTO Y PRONÓSTICO DE LA DEMANDA', category: 'curso' },
+
+    // PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS
+    { value: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', label: 'PMO: GESTIÓN DE PORTAFOLIO Y OFICINA DE PROYECTOS', category: 'curso' },
+
+    // POWER APPS Y POWER AUTOMATE
+    { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'curso' },
+    { value: 'POWER APPS Y POWER AUTOMATE', label: 'POWER APPS Y POWER AUTOMATE', category: 'especializacion' },
+
+    // POWER APPS Y POWER AUTOMATE AVANZADO
+    { value: 'POWER APPS Y POWER AUTOMATE AVANZADO', label: 'POWER APPS Y POWER AUTOMATE AVANZADO', category: 'curso' },
+
+    // POWER APPS Y POWER AUTOMATE PRESENCIAL
+    { value: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', label: 'POWER APPS Y POWER AUTOMATE PRESENCIAL', category: 'curso' },
+
+    // POWER BI
+    { value: 'POWER BI', label: 'POWER BI', category: 'curso' },
+    { value: 'POWER BI', label: 'POWER BI', category: 'especializacion' },
+
+    // POWER BI AVANZADO - DAX
+    { value: 'POWER BI AVANZADO - DAX', label: 'POWER BI AVANZADO - DAX', category: 'curso' },
+
+    // PROGRAMACIÓN CON VBA MACROS EN EXCEL
+    { value: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', label: 'PROGRAMACIÓN CON VBA MACROS EN EXCEL', category: 'curso' },
+
+    // PROGRAMACIÓN JAVASCRIPT WEB
+    { value: 'PROGRAMACIÓN JAVASCRIPT WEB', label: 'PROGRAMACIÓN JAVASCRIPT WEB', category: 'curso' },
+
+    // PROGRAMACIÓN WEB
+    { value: 'PROGRAMACIÓN WEB', label: 'PROGRAMACIÓN WEB', category: 'curso' },
+
+    // PYTHON AVANZADO: MACHINE LEARNING
+    { value: 'PYTHON AVANZADO: MACHINE LEARNING', label: 'PYTHON AVANZADO: MACHINE LEARNING', category: 'curso' },
+
+    // PYTHON: ANÁLISIS DE DATOS
+    { value: 'PYTHON: ANÁLISIS DE DATOS', label: 'PYTHON: ANÁLISIS DE DATOS', category: 'curso' },
+
+    // PYTHON: DATA SCIENCE
+    { value: 'PYTHON: DATA SCIENCE', label: 'PYTHON: DATA SCIENCE', category: 'especializacion' },
+
+    // REACT JS & REACT NATIVE
+    { value: 'REACT JS & REACT NATIVE', label: 'REACT JS & REACT NATIVE', category: 'curso' },
+
+    // ROBOTIZACIÓN DE PROCESOS CON UIPATH
+    { value: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', label: 'ROBOTIZACIÓN DE PROCESOS CON UIPATH', category: 'curso' },
+
+    // SAP S/4 HANA
+    { value: 'SAP S/4 HANA', label: 'SAP S/4 HANA', category: 'especializacion' },
+
+    // SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES
+    { value: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', label: 'SAP S/4 HANA EWM: LOGÍSTICA Y ALMACENES', category: 'curso' },
+
+    // SAP S/4 HANA FI: CONTABILIDAD FINANCIERA
+    { value: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', label: 'SAP S/4 HANA FI: CONTABILIDAD FINANCIERA', category: 'curso' },
+
+    // SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO
+    { value: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', label: 'SAP S/4 HANA HCM: GESTIÓN DEL CAPITAL HUMANO', category: 'curso' },
+
+    // SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)
+    { value: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', label: 'SAP S/4 HANA IN: SAP INTEGRAL (MM+PP+SD+FI)', category: 'curso' },
+
+    // SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES
+    { value: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', label: 'SAP S/4 HANA MM: LOGÍSTICA Y MATERIALES', category: 'curso' },
+
+    // SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA
+    { value: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', label: 'SAP S/4 HANA PM: MANTENIMIENTO DE PLANTA', category: 'curso' },
+
+    // SAP S/4 HANA PP: PRODUCCIÓN
+    { value: 'SAP S/4 HANA PP: PRODUCCIÓN', label: 'SAP S/4 HANA PP: PRODUCCIÓN', category: 'curso' },
+
+    // SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN
+    { value: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', label: 'SAP S/4 HANA SD: LOGÍSTICA Y DISTRIBUCIÓN', category: 'curso' },
+
+    // SAP S/4 HANA: COMPRAS Y ALMACENES
+    { value: 'SAP S/4 HANA: COMPRAS Y ALMACENES', label: 'SAP S/4 HANA: COMPRAS Y ALMACENES', category: 'especializacion' },
+
+    // SAP S/4 HANA: GESTIÓN FINANCIERA
+    { value: 'SAP S/4 HANA: GESTIÓN FINANCIERA', label: 'SAP S/4 HANA: GESTIÓN FINANCIERA', category: 'especializacion' },
+
+    // SAP S/4 HANA: LOGÍSTICA INTEGRAL
+    { value: 'SAP S/4 HANA: LOGÍSTICA INTEGRAL', label: 'SAP S/4 HANA: LOGÍSTICA INTEGRAL', category: 'especializacion' },
+
+    // SAP S/4 HANA: MINERÍA
+    { value: 'SAP S/4 HANA: MINERÍA', label: 'SAP S/4 HANA: MINERÍA', category: 'especializacion' },
+
+    // SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN
+    { value: 'SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', label: 'SAP S/4 HANA: PLANIFICACIÓN DE LA PRODUCCIÓN', category: 'especializacion' },
+
+    // SQL SERVER AVANZADO
+    { value: 'SQL SERVER AVANZADO', label: 'SQL SERVER AVANZADO', category: 'curso' },
+
+    // SQL SERVER FOR ANALYTICS
+    { value: 'SQL SERVER FOR ANALYTICS', label: 'SQL SERVER FOR ANALYTICS', category: 'curso' },
+
+    // SQL SERVER
+    { value: 'SQL SERVER', label: 'SQL SERVER', category: 'especializacion' },
+
+    // SUPPLY CHAIN ANALYTICS
+    { value: 'SUPPLY CHAIN ANALYTICS', label: 'SUPPLY CHAIN ANALYTICS', category: 'curso' },
+
+    // SUPPLY CHAIN MANAGEMENT
+    { value: 'SUPPLY CHAIN MANAGEMENT', label: 'SUPPLY CHAIN MANAGEMENT', category: 'diplomado' },
+
+    // VBA MACROS EN MICROSOFT EXCEL
+    { value: 'VBA MACROS EN MICROSOFT EXCEL', label: 'VBA MACROS EN MICROSOFT EXCEL', category: 'especializacion' }
+  ]
 }
 const canNext = computed(() => currentStep.value < maxStep && sectionReady(currentStep.value))
 
