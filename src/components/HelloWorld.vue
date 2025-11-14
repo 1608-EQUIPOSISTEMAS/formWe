@@ -273,6 +273,14 @@
                         placeholder="Selecciona…"
                       />
                     </div>
+                    
+                    <div v-if="form.areaActual === 'otra'" class="field col-6">
+                      <label>Especifica: <span class="req">*</span></label>
+                      <input autocomplete="new-password" v-model.trim="form.areaActualOtra" placeholder="Nombre de la universidad" />
+                    </div>
+
+                    <div v-if="form.areaActual != 'otra'" class="col-6"></div>
+
                     <div class="field col-6">
                       <label>Área deseada <span class="req">*</span></label>
                       <SearchSelect
@@ -283,6 +291,14 @@
                         placeholder="Selecciona…"
                       />
                     </div>
+                    
+                    <div v-if="form.areaDeseada === 'otra'" class="field col-6">
+                      <label>Especifica: <span class="req">*</span></label>
+                      <input autocomplete="new-password" v-model.trim="form.areaDeseadaOtra" placeholder="Nombre de la universidad" />
+                    </div>
+
+                    <div v-if="form.areaDeseada != 'otra'" class="col-6"></div>
+
                     <div class="field col-6"> 
                       <label>Nombre de la Empresa <span class="req">*</span></label>
                       <input autocomplete="new-password" v-model.trim="form.empresa" placeholder="Empresa S.A.C" v-restrict="{ only: 'letters', max: 80 }"/>
@@ -291,11 +307,11 @@
                       <label>Puesto <span class="req">*</span></label>
                       <input autocomplete="new-password" v-model.trim="form.puesto" placeholder="Cargo actual" v-restrict="{ only: 'letters', max: 80 }"/>
                     </div>
-                    <div class="field col-4">
+                    <div class="field col-6">
                       <label>Años de experiencia <span class="req">*</span></label>
                       <input autocomplete="new-password" v-model.number="form.aniosExp" type="number" min="0" placeholder="0" />
                     </div>
-                    <div class="field col-4">
+                    <div class="field col-6">
                       <label>Sector económico <span class="req">*</span></label>
                       <SearchSelect
                         v-model="form.sector"
@@ -585,6 +601,8 @@ const form = reactive({
   situacionActual: null,
   areaActual: null,
   areaDeseada: null,
+  areaActualOtra: null,
+  areaDeseadaOtra: null,
   empresa: '',
   puesto: '',
   aniosExp: null,
@@ -797,7 +815,8 @@ const catalogo = {
       { value: 'servicios_publicos', label: 'Servicios Públicos' },
       { value: 'tecnologia', label: 'Tecnología' },
       { value: 'turismo_hoteleria', label: 'Turismo y Hotelería' },
-      { value: 'ventas', label: 'Ventas' }
+      { value: 'ventas', label: 'Ventas' },
+      { value: 'otra', label: 'Otra' }
   ],
   grados: [
     { value: 'primaria', label: 'Primaria Completa' },
