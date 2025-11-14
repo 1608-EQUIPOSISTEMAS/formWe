@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative" ref="wrapperEl">
+  <div class="position-relative searchselect-root" ref="wrapperEl">
     <!-- Control -->
     <div
       class="form-control d-flex align-items-center position-relative searchselect-control"
@@ -34,15 +34,16 @@
         v-else
         autocomplete="off"
         type="text"
-        class="border-0 flex-grow-1 p-0 bg-transparent searchselect-input"
+        class="border-0 p-0 bg-transparent searchselect-input"
         :placeholder="placeholder"
         v-model="searchText"
         :disabled="isLocked && !isMultiple"
         @focus="openDropdown"
         @input="onInputChange"
         :aria-invalid="required && !isLocked"
-        style="outline: none; box-shadow: none; min-width: 4ch;"
+        style="outline: none; box-shadow: none;"
       />
+
 
       <!-- Spinner (absoluto) -->
       <span
@@ -321,22 +322,27 @@ function clearAll() {
 </script>
 
 <style scoped>
+/* Ya tienes esto, solo asegúrate de que tenga max-width */
 .searchselect-control {
   position: relative;
-  padding-right: 2.25rem;   /* espacio para spinner / clear */
-  overflow: hidden;         /* evita derrames con zoom */
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-right: 2.25rem;
+  overflow: hidden;           /* aquí sí, para que no se desborde el texto */
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  flex-wrap: nowrap;
   gap: .35rem;
+  min-width: 0;          /* 👈 también importante aquí */
 }
+
 
 /* Label bloqueado (single) */
 .ss-locked-label{
   flex: 1 1 auto;
   min-width: 0;
-  font-size: .9rem;
-  color: #111827;
-  padding: .125rem 0;
+  max-width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -344,17 +350,38 @@ function clearAll() {
 
 /* Chips */
 .ss-chip {
-  display: inline-flex; align-items: center; gap: .35rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
   max-width: 100%;
-  background: #f3f4f6; border: 1px solid #e5e7eb; color: #374151;
-  border-radius: 999px; padding: .2rem .5rem; font-size: .78rem; line-height: 1;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  border-radius: 999px;
+  padding: .2rem .5rem;
+  font-size: .78rem;
+  line-height: 1;
 }
-.ss-chip__label{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:30ch; }
+.ss-chip__label{   flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  min-height: 1.6rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;}
 .ss-chip__x{ border:0; background:transparent; cursor:pointer; color:#6b7280; font-size:1rem; line-height:1; }
 .ss-chip__x:hover{ color:#dc2626; }
 
 /* Input */
-.searchselect-input{ width:100%; min-height:1.6rem; }
+/* Input: que se adapte y recorte con … */
+.searchselect-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .searchselect-input[disabled]{ background-color:transparent; color:#111827; cursor:default; }
 .is-locked{ cursor: default !important; }
 
@@ -382,4 +409,11 @@ function clearAll() {
 .spinner, .spinner::after{ box-sizing:border-box; }
 .spinner{ width:16px; height:16px; border:2px solid #e5e7eb; border-top-color:#6b7280; border-radius:50%; animation:spin .8s linear infinite; }
 @keyframes spin{ to{ transform: rotate(360deg); } }
+/* El wrapper nunca será más ancho que su contenedor */
+.searchselect-root {
+  width: 100%;
+  max-width: 100%;
+  flex: 1 1 auto;   /* si el padre es flex, que pueda crecer/encoger */
+  min-width: 0;     /* 👈 CLAVE para que no desborde en layouts flex */
+}
 </style>

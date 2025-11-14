@@ -672,7 +672,7 @@ const catalogo = {
       { value: 'energia', label: 'Ingeniería de la Energía' },
       { value: 'petroleo', label: 'Ingeniería de Petróleo' },
       { value: 'sistemas', label: 'Ingeniería de Sistemas' },
-      { value: 'sistemas', label: 'Ingeniería de Software' },
+      { value: 'software', label: 'Ingeniería de Software' },
       { value: 'telecomunicaciones', label: 'Ingeniería de Telecomunicaciones' },
       { value: 'energias_renovables', label: 'Ingeniería en Energías Renovables' },
       { value: 'forestal', label: 'Ingeniería Forestal' },
